@@ -1,4 +1,16 @@
 import java.util.Iterator;
-public class LenkelisteIterator implements iterator<T>{
+public class LenkelisteIterator implements Iterator<T>{
+        
+    @Override
+    public boolean hasNext() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public T next() {
+        // TODO Auto-generated method stub
+        return null;
+    }
     
 }
