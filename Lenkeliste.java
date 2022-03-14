@@ -7,13 +7,13 @@ class Lenkeliste<T> implements Liste<T>{
     class Node {
         Node neste, forrige;
         T x;
-
         public Node(T x){
             this.x = x;
             neste = null;
             forrige = null;
         }
     }
+
     class LenkelisteIterator implements Iterator<T> {
         private Node tmp = forste;
         public boolean hasNext() {
@@ -81,5 +81,10 @@ class Lenkeliste<T> implements Liste<T>{
             tmp = tmp.neste;
         }
         return string;
+    }
+    @Override
+    public Iterator<T> iterator() {
+        // Oppretter og returnerer et nytt LenkeListeIterator-objekt
+        return new LenkelisteIterator();
     }
 }
