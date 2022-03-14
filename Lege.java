@@ -13,9 +13,8 @@ public class Lege implements Comparable<Lege> {
         return utskrevneResepter;
     }
 
-
     // 4 metoder som oppretter alle resept typene
-    
+
     public HvitResept skrivHvitResept (Legemiddel legemiddel, Pasient pasient, int reit) throws UlovligUtskrift {
         // this er objektet av Lege
         HvitResept hvitResept = new HvitResept(legemiddel, this, pasient, reit);
@@ -47,7 +46,6 @@ public class Lege implements Comparable<Lege> {
         pasient.leggTilResept(blaaResept);
         return blaaResept;
     }
-    
 
     @Override
     public String toString() {
