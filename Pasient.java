@@ -2,7 +2,7 @@ public class Pasient {
     private String navn;
     private String fodselsnummer;
     private int ID;
-    private Lenkeliste<Resept>;
+    protected Lenkeliste<resept>;
     // Må være static fordi det er felles for alle objekter
     static int ID_teller = 1;
 

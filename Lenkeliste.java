@@ -17,13 +17,12 @@ abstract class Lenkeliste<T> implements Liste<T>{
 
     class LenkelisteIterator implements Iterator<T> {
         private Node tmp = forste;
+
         public boolean hasNext() {
             if (tmp != null) {
                 return true;
             } 
-            else {
-                return false;
-            }
+            return false;
         }
         public T next() {
             T x = tmp.x;
