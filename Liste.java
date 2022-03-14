@@ -3,4 +3,4 @@ interface Liste <T> {
     void leggTil (T x);
     T hent ();
     T fjern ();
-}  
+}
