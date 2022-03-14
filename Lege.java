@@ -20,6 +20,7 @@ public class Lege implements Comparable<Lege> {
         HvitResept hvitResept = new HvitResept(legemiddel, this, pasient, reit);
         // legger til utskrevne og pasient resepter
         // Trenger å caste til Resept for leggTil() metoden
+        System.out.println(hvitResept);
         utskrevneResepter.leggTil((Resept) hvitResept);
         pasient.leggTilResept(hvitResept);
         // returnerer
