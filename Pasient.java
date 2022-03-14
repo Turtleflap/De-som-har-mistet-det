@@ -40,3 +40,4 @@ public class Pasient {
         fodselsnummer + ". ID: " + ID + ". Resepter: " + resepter;
     }
 }
+// test
