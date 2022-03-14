@@ -1,4 +1,4 @@
-interface Liste<T> extends Iterable<T>{
+interface Liste <T> {
     int stoerrelse ();
     void leggTil (T x);
     T hent ();
