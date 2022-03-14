@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 abstract class Lenkeliste<T> implements Liste<T>{
     protected Node forste, siste;
     protected int storrelse;
@@ -12,6 +14,24 @@ abstract class Lenkeliste<T> implements Liste<T>{
             forrige = null;
         }
     }
+
+    class LenkelisteIterator implements Iterator<T> {
+        private Node tmp = forste;
+        public boolean hasNext() {
+            if (tmp != null) {
+                return true;
+            } 
+            else {
+                return false;
+            }
+        }
+        public T next() {
+            T x = tmp.x;
+            tmp = tmp.x;
+            return x;
+        }
+    }
+    
     @Override
     public int stoerrelse(){
         return storrelse;
