@@ -14,8 +14,9 @@ public class Pasient {
         ID_teller++;
     }
 
-    public void leggTilResept(Respet resept) {
+    public void leggTilResept(Resept resept) {
         // legg til metode her fra resept klassen
+        resepter.leggTil(resept);
     }
 
     public Koe<Resept> hentResepter() {
