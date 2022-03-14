@@ -14,7 +14,6 @@ class Lenkeliste<T> implements Liste<T>{
             forrige = null;
         }
     }
-
     class LenkelisteIterator implements Iterator<T> {
         private Node tmp = forste;
 
@@ -30,7 +29,7 @@ class Lenkeliste<T> implements Liste<T>{
             return x;
         }
     }
-    
+
     @Override
     public int stoerrelse(){
         return storrelse;
@@ -49,7 +48,7 @@ class Lenkeliste<T> implements Liste<T>{
             }
         tmp.neste = nyNode;
         }
-        
+
     }
     @Override
     public T hent(){

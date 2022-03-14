@@ -6,5 +6,4 @@ public class Militaerresept extends HvitResept{
     public int prisAaBetale() {
         return 0;
     }
-
 }
