@@ -27,7 +27,7 @@ abstract class Lenkeliste<T> implements Liste<T>{
         }
         public T next() {
             T x = tmp.x;
-            tmp = tmp.x;
+            tmp = tmp.neste;
             return x;
         }
     }
