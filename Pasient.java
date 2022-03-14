@@ -15,7 +15,6 @@ public class Pasient {
     }
 
     public void leggTilResept(Resept resept) {
-        // legg til metode her fra resept klassen
         resepter.leggTil(resept);
     }
 
