@@ -1,4 +1,6 @@
 import java.util.Arrays;
+// StackOverflow spørsmål som er om problemet
+// https://stackoverflow.com/questions/65377725/why-i-am-getting-error-this-variable-is-null-in-java-class
 
 public class testLege {
     public static void main(String[] args) throws UlovligUtskrift {
