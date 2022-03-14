@@ -1,4 +1,4 @@
 import java.util.Iterator;
 
-interface Liste<T> extends Iterable<T> {
+public interface Liste<T> extends Iterable<T> {
 }
