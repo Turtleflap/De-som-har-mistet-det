@@ -18,8 +18,7 @@ public class Pasient {
         // legg til metode her fra resept klassen
     }
 
-    public hentResepter() {
-        // legg til Resepter her
+    public Koe<Resept> hentResepter() {
         return resepter;
     }
 
