@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-abstract class Lenkeliste<T> implements Liste<T>{
+class Lenkeliste<T> implements Liste<T>{
     protected Node forste, siste;
     protected int storrelse;
 
