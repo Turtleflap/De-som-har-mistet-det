@@ -1,8 +1,8 @@
 public class BlaaResept extends Resept{
     private String farge = "blaa";
 
-    public BlaaResept(Legemiddel legemiddel, Lege lege, int pasientId, int reit) {
-        super(legemiddel, lege, pasientId, reit);
+    public BlaaResept(Legemiddel legemiddel, Lege lege, Pasient pasient, int reit) {
+        super(legemiddel, lege, pasient, reit);
     }
     @Override
     public String farge() {
