@@ -16,7 +16,6 @@ class Lenkeliste<T> implements Liste<T>{
     }
     class LenkelisteIterator implements Iterator<T> {
         private Node tmp = forste;
-
         public boolean hasNext() {
             if (tmp != null) {
                 return true;
