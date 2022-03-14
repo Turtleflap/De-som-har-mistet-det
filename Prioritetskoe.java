@@ -47,11 +47,11 @@ public class Prioritetskoe<T extends Comparable<T> > extends Lenkeliste <T>{
         }
         return forste.x;
     }
-  
+
     @Override
     public T fjern(){
         Node tmp = forste;
-  
+
         if(stoerrelse() == 0){
             throw new UgyldigListeindeks(0);
         } 

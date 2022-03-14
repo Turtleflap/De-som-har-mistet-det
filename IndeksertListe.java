@@ -66,32 +66,30 @@ public class IndeksertListe<T> extends Lenkeliste<T> {
 
     public T fjern(int pos) {
         if (pos >= stoerrelse() || pos < 0 || forste == null) {
-          throw new UgyldigListeindeks(pos);
+            throw new UgyldigListeindeks(pos);
         }
         Node tmp = forste;
         Node forrige = null;
         storrelse --;
         
         if (pos == 0 && tmp != null) {
-          forste = tmp.neste;
-          return tmp.x;
+            forste = tmp.neste;
+            return tmp.x;
         }
         int teller = 0;
         while (tmp != null) {
-          if (teller == pos) {
-            forrige.neste = tmp.neste;
-            return tmp.x;
-          } 
-          else {
+            if (teller == pos) {
+                forrige.neste = tmp.neste;
+                return tmp.x;
+        } else {
             forrige = tmp;
             tmp = tmp.neste;
             teller ++;
-          }
+        }
         }
         if (tmp == null) {
-          System.out.println(pos + " element ikke funnet.");
-    
+            System.out.println(pos + " element ikke funnet.");
         }
         return null;
-      }
+    }
 }
