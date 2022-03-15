@@ -9,7 +9,7 @@ public class Pasient {
     public Pasient(String navn, String fodselsnummer) {
         this.navn = navn;
         this.fodselsnummer = fodselsnummer;
-        // setter ID lik ID_teller og øker med 1
+        // setter ID lik ID_teller og øker med 1 
         ID = ID_teller;
         ID_teller++;
     }
