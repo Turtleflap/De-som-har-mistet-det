@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class testLege {
     public static void main(String[] args) throws UlovligUtskrift {
         // legemidler
-        Vanlig vanlig = new Vanlig("Navn1", 3210, 100);
-        Narkotisk narkotisk = new Narkotisk("navn2", 20, 200, 2);
-        Vanedannende vanedannende = new Vanedannende("navn3", 30, 300, 3);
+        Vanlig vanlig = new Vanlig("Vanlig", 3210, 100);
+        Narkotisk narkotisk = new Narkotisk("Narkotisk", 20, 200, 2);
+        Vanedannende vanedannende = new Vanedannende("Vanedannende", 30, 300, 3);
         // leger
         Lege lege = new Lege("Lege");
         Lege lege2 = new Lege("Lege2");
