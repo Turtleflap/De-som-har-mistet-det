@@ -27,8 +27,7 @@ public abstract class Legemiddel {
     public void nyPris(int nyPris) {
         pris = nyPris;
     }
-    
-    
+
     /*public String toString(){
         return "Legemiddel: " + navn + ", pris: " + pris + ", virkestoff: " + virkestoff + "mg, id: " + ID;
     }*/
