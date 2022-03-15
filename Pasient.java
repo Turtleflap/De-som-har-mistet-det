@@ -1,3 +1,5 @@
+
+
 public class Pasient {
     private String navn;
     private String fodselsnummer;
@@ -20,8 +22,8 @@ public class Pasient {
         resepter.leggTil(resept);
     }
 
-    public Lenkeliste<Resept>  hentResepter() {
-        return resepter;
+    public Lenkeliste<Resept> hentResepter() {
+        return null;
     }
 
     public String hentNavn() {
