@@ -72,7 +72,8 @@ public class Lege implements Comparable<Lege> {
     // returner en int
     // Bruker mindre enn (A < B) for å få det alfabetisk
     // https://www.codegrepper.com/code-examples/java/how+to+check+if+one+string+is+alphabetically+before+another+in+java
-    public int compareTo(Lege o) {
-        return this.navn.compareTo(o.navn);
+    public int compareTo(Lege lege) {
+        // sammenligner dette lege objektet sitt navn med et annet
+        return this.navn.compareTo(lege.navn);
     }
 }

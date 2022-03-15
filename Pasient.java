@@ -17,8 +17,7 @@ public class Pasient {
     }
 
     public void leggTilResept(Resept resept) {
-        // DETTE FUNKER IKKE
-        // resepter.leggTil(resept);
+        resepter.leggTil(resept);
     }
 
     public Koe<Resept> hentResepter() {
