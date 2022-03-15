@@ -1,50 +1,62 @@
 public class Lege implements Comparable<Lege> {
     protected String navn;
-    IndeksertListe<Resept> utskrevneResepter;
+    protected IndeksertListe<Resept> utskrevneResepter;
 
     public Lege(String navn){
         this.navn = navn;
+        // oppretter IndekstertListe i konstruktøren
+        utskrevneResepter = new IndeksertListe<>();
     }
     public String hentNavn() {
         return navn;
     }
 
-    public IndeksertListe<Resept> hentResept() {
+    public IndeksertListe<Resept> hentResepter() {
         return utskrevneResepter;
     }
 
     // 4 metoder som oppretter alle resept typene
 
     public HvitResept skrivHvitResept (Legemiddel legemiddel, Pasient pasient, int reit) throws UlovligUtskrift {
-        // this er objektet av Lege
-        HvitResept hvitResept = new HvitResept(legemiddel, this, pasient, reit);
-        // legger til utskrevne og pasient resepter
-        // Trenger å caste til Resept for leggTil() metoden
-        System.out.println(hvitResept);
-        utskrevneResepter.leggTil((Resept) hvitResept);
-        pasient.leggTilResept(hvitResept);
-        // returnerer
-        return hvitResept;
+        // hvis legemiddel er et objekt av Narkotisk
+        if (legemiddel instanceof Narkotisk) {
+            // this er objektet av Lege
+                throw new UlovligUtskrift(this, legemiddel);
+            }
+            HvitResept hvitResept = new HvitResept(legemiddel, this, pasient, reit);
+            // legger til utskrevneResepter
+            utskrevneResepter.leggTil(hvitResept);
+            // returnerer
+            return hvitResept;
     }
 
     public Militaerresept skrivMilResept (Legemiddel legemiddel, Pasient pasient) throws UlovligUtskrift {
+        if (legemiddel instanceof Narkotisk) {
+                throw new UlovligUtskrift(this, legemiddel);
+            }
         Militaerresept militaerresept = new Militaerresept(legemiddel, this, pasient);
-        utskrevneResepter.leggTil((Resept) militaerresept);
-        pasient.leggTilResept(militaerresept);
+        utskrevneResepter.leggTil(militaerresept);
         return militaerresept;
     }
 
     public PResept skrivPResept (Legemiddel legemiddel, Pasient pasient, int reit) throws UlovligUtskrift {
+        if (legemiddel instanceof Narkotisk) {
+            throw new UlovligUtskrift(this, legemiddel);
+        }
         PResept pResept = new PResept(legemiddel, this, pasient, reit);
-        utskrevneResepter.leggTil((Resept) pResept);
-        pasient.leggTilResept(pResept);
+        utskrevneResepter.leggTil(pResept);
         return pResept;
     }
 
     public BlaaResept skrivBlaaResept (Legemiddel legemiddel, Pasient pasient, int reit) throws UlovligUtskrift {
+        if (legemiddel instanceof Narkotisk) {
+            // hvis Lege ikke er et objekt av Spesialist
+            if (!(this instanceof Spesialist)) {
+                throw new UlovligUtskrift(this, legemiddel);
+            }
+        }
         BlaaResept blaaResept = new BlaaResept(legemiddel, this, pasient, reit);
-        utskrevneResepter.leggTil((Resept) blaaResept);
-        pasient.leggTilResept(blaaResept);
+        utskrevneResepter.leggTil(blaaResept);
         return blaaResept;
     }
 

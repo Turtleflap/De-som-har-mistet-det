@@ -10,16 +10,10 @@ public class testLege {
         Vanedannende vanedannende = new Vanedannende("navn3", 30, 300, 3);
         // leger
         Lege lege = new Lege("Lege");
-        Spesialist spesialist = new Spesialist("navn5", "id123");
+        Spesialist spesialist = new Spesialist("Spesialist", "id123");
 
         // pasient
         Pasient pasient = new Pasient("Karl", "12345612345");
-
-        // resepter
-        HvitResept hvitResept = new HvitResept(vanlig, lege, pasient, 3);
-        Militaerresept militaerresept = new Militaerresept(narkotisk, lege, pasient);
-        PResept pResept = new PResept(vanedannende, lege, pasient, 3);
-        BlaaResept blaaResept = new BlaaResept(vanedannende, lege, pasient, 3);
 
         //tester comparable
         System.out.println("tester comparable");
@@ -33,7 +27,12 @@ public class testLege {
         System.out.println(leger[0]);
         System.out.println(leger[1]);
         //tester skrivResept
-        System.out.println("\n tester skrivResept");
-        System.out.println(lege.skrivHvitResept(vanlig, pasient, 3));
+        System.out.println("\ntester skrivResept");
+        spesialist.skrivHvitResept(vanlig, pasient, 3);
+        spesialist.skrivHvitResept(vanedannende, pasient, 3);
+        spesialist.skrivBlaaResept(narkotisk, pasient, 3);
+        lege.skrivBlaaResept(vanedannende, pasient, 3);
+        System.out.println(spesialist.hentResepter());
+        lege.skrivBlaaResept(narkotisk, pasient, 3);
     }
 }
