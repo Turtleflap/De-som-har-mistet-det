@@ -9,9 +9,9 @@ public class testLege {
         Narkotisk narkotisk = new Narkotisk("Narkotisk", 20, 200, 2);
         Vanedannende vanedannende = new Vanedannende("Vanedannende", 30, 300, 3);
         // leger
-        Lege lege = new Lege("Lege");
-        Lege lege2 = new Lege("Lege2");
-        Spesialist spesialist = new Spesialist("Spesialist", "id123");
+        Lege lege = new Lege("Kari Nordmann");
+        Lege lege2 = new Lege("Hans Ryen");
+        Spesialist spesialist = new Spesialist("Ola Nordmann", "ID123");
 
         // pasient
         Pasient pasient = new Pasient("Karl", "12345612345");

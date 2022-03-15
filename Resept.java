@@ -40,6 +40,6 @@ public abstract class Resept {
     abstract public int prisAaBetale();
     @Override
     public String toString() {
-        return "ID: " + ID + ", legemiddel: " + legemiddel + ", " + utskrivendeLege + ", pasient: " + pasient + ", reit: " + reit;
+        return "ID: " + ID + ", Legemiddel: " + legemiddel + ", " + utskrivendeLege + ", Pasient: " + pasient + ", Reit: " + reit;
     }
 }

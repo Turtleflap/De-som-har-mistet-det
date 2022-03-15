@@ -10,6 +10,6 @@ public class Narkotisk extends Legemiddel{
     }
     @Override
     public String toString(){
-        return "Narkotisk legemiddel: " + navn + ", pris: " + pris + ", virkestoff: " + virkestoff + "mg, ID: " + ID + ", narkotisk styrke: " + styrke;
+        return "Narkotisk legemiddel: " + navn + ", Pris: " + pris + ", Virkestoff: " + virkestoff + "mg, ID: " + ID + ", Narkotisk styrke: " + styrke;
     }
 }
