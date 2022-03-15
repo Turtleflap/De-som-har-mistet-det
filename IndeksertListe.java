@@ -1,5 +1,4 @@
 public class IndeksertListe<T> extends Lenkeliste<T> {
-    
     public void leggTil(int pos, T x){
         if(pos >= 0 && pos <= stoerrelse()){
             Node nyNode = new Node(x);

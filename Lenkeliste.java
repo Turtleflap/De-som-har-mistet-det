@@ -73,7 +73,7 @@ class Lenkeliste<T> implements Liste<T>{
 
         while(tmp != null){
             if(tmp.neste != null){
-                string += tmp.x + "--> ";
+                string += tmp.x;
             }
             else{
                 string += tmp.x;

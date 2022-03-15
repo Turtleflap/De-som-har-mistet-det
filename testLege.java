@@ -10,6 +10,7 @@ public class testLege {
         Vanedannende vanedannende = new Vanedannende("navn3", 30, 300, 3);
         // leger
         Lege lege = new Lege("Lege");
+        Lege lege2 = new Lege("Lege2");
         Spesialist spesialist = new Spesialist("Spesialist", "id123");
 
         // pasient
@@ -32,7 +33,13 @@ public class testLege {
         spesialist.skrivHvitResept(vanedannende, pasient, 3);
         spesialist.skrivBlaaResept(narkotisk, pasient, 3);
         lege.skrivBlaaResept(vanedannende, pasient, 3);
+        lege.skrivMilResept(vanedannende, pasient);
+        lege2.skrivBlaaResept(vanedannende, pasient, 3);
+        lege2.skrivMilResept(vanedannende, pasient);
         System.out.println(spesialist.hentResepter());
+        System.out.println(lege.hentResepter());
+        System.out.println(lege2.hentResepter());
+        // gir feil med throw UlovligUtskrift
         lege.skrivBlaaResept(narkotisk, pasient, 3);
     }
 }

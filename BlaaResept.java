@@ -14,6 +14,6 @@ public class BlaaResept extends Resept{
     }
     @Override
     public String toString() {
-        return super.toString() + ", farge: " + farge;
+        return super.toString() + ", farge: " + farge + "\n";
     }
 }
