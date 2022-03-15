@@ -40,9 +40,9 @@ public class testLege {
         lege.skrivMilResept(vanedannende, pasient);
         lege2.skrivBlaaResept(vanedannende, pasient, 3);
         lege2.skrivMilResept(vanedannende, pasient);
-        System.out.println(spesialist.hentResepter());
-        System.out.println(lege.hentResepter());
-        System.out.println(lege2.hentResepter());
+        // System.out.println(pasient.hentResepter());
+        // System.out.println(lege.hentResepter());
+        // System.out.println(lege2.hentResepter());
         // gir feil med throw UlovligUtskrift
         lege.skrivBlaaResept(narkotisk, pasient, 3);
     }

@@ -54,7 +54,7 @@ public class Lege implements Comparable<Lege> {
 
     public BlaaResept skrivBlaaResept (Legemiddel legemiddel, Pasient pasient, int reit) throws UlovligUtskrift {
         if (legemiddel instanceof Narkotisk) {
-            // hvis Lege ikke er et objekt av Spesialist
+            // hvis ikke et objekt av Spesialist
             if (!(this instanceof Spesialist)) {
                 throw new UlovligUtskrift(this, legemiddel);
             }
@@ -67,13 +67,14 @@ public class Lege implements Comparable<Lege> {
 
     @Override
     public String toString() {
-        return "Navn: " + navn;
+        return "Navn: " + hentNavn();
     }
     @Override
     // returner en int
     // Bruker mindre enn (A < B) for å få det alfabetisk
     // https://www.codegrepper.com/code-examples/java/how+to+check+if+one+string+is+alphabetically+before+another+in+java
-    public int compareTo(Lege o) {
-        return this.navn.compareTo(o.navn);
+    public int compareTo(Lege lege) {
+        // sammenligner dette lege objektet sitt navn med et annet
+        return this.navn.compareTo(lege.navn);
     }
 }

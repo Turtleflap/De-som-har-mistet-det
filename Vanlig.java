@@ -4,6 +4,6 @@ public class Vanlig extends Legemiddel{
     }
     @Override
     public String toString(){
-    return "Vanlig legemiddel: " + navn + ", Pris: " + pris + ", Virkestoff: " + virkestoff + "mg, ID: " + ID;
+    return "Vanlig legemiddel: " + super.hentNavn() + ", Pris: " + super.hentPris() + ", Virkestoff: " + super.hentVirkestoff() + "mg, ID: " + super.hentId();
     }
 }
