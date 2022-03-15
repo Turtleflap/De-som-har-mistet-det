@@ -1,6 +1,6 @@
 public class Lege implements Comparable<Lege> {
     protected String navn;
-    Lenkeliste<Resept> utskrevneResepter;
+    IndeksertListe<Resept> utskrevneResepter;
 
     public Lege(String navn){
         this.navn = navn;
@@ -9,7 +9,7 @@ public class Lege implements Comparable<Lege> {
         return navn;
     }
 
-    public Lenkeliste<Resept> hentResept() {
+    public IndeksertListe<Resept> hentResept() {
         return utskrevneResepter;
     }
 
