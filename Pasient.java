@@ -2,13 +2,14 @@ public class Pasient {
     private String navn;
     private String fodselsnummer;
     private int ID;
-    protected Koe<Resept> resepter = new Koe<>();
+    protected Koe<Resept> resepter;
     // Må være static fordi det er felles for alle objekter
     static int ID_teller = 1;
 
     public Pasient(String navn, String fodselsnummer) {
         this.navn = navn;
         this.fodselsnummer = fodselsnummer;
+        // oppretter Kø indeks
         resepter = new Koe<>();
         // setter ID lik ID_teller og øker med 1
         ID = ID_teller;
