@@ -19,7 +19,7 @@ public class testLege {
 
 
         //tester comparable
-        System.out.println("tester comparable verdier:");
+        System.out.println("Tester comparable verdier:");
         System.out.println(lege.compareTo(spesialist));
         System.out.println(spesialist.compareTo(lege));
         System.out.println(lege.compareTo(lege2));
@@ -34,7 +34,7 @@ public class testLege {
         System.out.println(leger[1]);
         System.out.println(leger[2]);
         //tester skrivResept
-        System.out.println("\ntester skrivResept:");
+        System.out.println("\nTester skrivResept:");
         spesialist.skrivHvitResept(vanlig, pasient, 3);
         spesialist.skrivHvitResept(vanedannende, pasient, 3);
         spesialist.skrivBlaaResept(narkotisk, pasient, 3);
@@ -44,7 +44,7 @@ public class testLege {
         lege2.skrivMilResept(vanedannende, pasient);
         System.out.println("\nHenter pasient og resepter");
         System.out.println(pasient);
-        System.out.println("\nhenter lege og resepter");
+        System.out.println("\nHenter lege og resepter");
         System.out.println(lege);
         System.out.println(lege.hentResepter());
         // gir feil med throw UlovligUtskrift
