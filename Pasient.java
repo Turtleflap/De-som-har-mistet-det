@@ -40,7 +40,6 @@ public class Pasient {
 
     @Override
     public String toString() {
-        return "Pasient: " + navn + ". Fodselsnummer: " + 
-        fodselsnummer + "\nID: " + ID + ", Resepter: " + resepter;
+        return "Pasient: " + navn + ". Fodselsnummer: " + fodselsnummer + "\n" + resepter;
     }
 }

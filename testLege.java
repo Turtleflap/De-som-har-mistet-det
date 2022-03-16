@@ -38,13 +38,13 @@ public class testLege {
         spesialist.skrivHvitResept(vanlig, pasient, 3);
         spesialist.skrivHvitResept(vanedannende, pasient, 3);
         spesialist.skrivBlaaResept(narkotisk, pasient, 3);
-        lege.skrivBlaaResept(narkotisk, pasient, 3);
+        lege.skrivBlaaResept(vanlig, pasient, 3);
         lege.skrivMilResept(vanedannende, pasient);
         lege2.skrivBlaaResept(vanedannende, pasient, 3);
         lege2.skrivMilResept(vanedannende, pasient);
         System.out.println("\nHenter pasient og resepter");
         System.out.println(pasient);
-        System.out.println("\nhenter lege og resepter");
+        System.out.println("\nHenter lege og resepter");
         System.out.println(lege);
         System.out.println(spesialist);
         // gir feil med throw UlovligUtskrift
