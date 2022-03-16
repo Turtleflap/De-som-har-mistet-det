@@ -15,7 +15,7 @@ public class testLege {
 
         // pasienter
         Pasient pasient = new Pasient("Karl", "12345612345");
-        Pasient pasient2 = new Pasient("Karl2", "12345612345");
+        //Pasient pasient2 = new Pasient("Karl2", "12345612345");
 
 
         //tester comparable
