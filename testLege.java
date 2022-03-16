@@ -38,7 +38,7 @@ public class testLege {
         spesialist.skrivHvitResept(vanlig, pasient, 3);
         spesialist.skrivHvitResept(vanedannende, pasient, 3);
         spesialist.skrivBlaaResept(narkotisk, pasient, 3);
-        lege.skrivBlaaResept(vanedannende, pasient, 3);
+        lege.skrivBlaaResept(narkotisk, pasient, 3);
         lege.skrivMilResept(vanedannende, pasient);
         lege2.skrivBlaaResept(vanedannende, pasient, 3);
         lege2.skrivMilResept(vanedannende, pasient);
