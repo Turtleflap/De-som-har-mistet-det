@@ -36,14 +36,17 @@ public class testLege {
         //tester skrivResept
         System.out.println("\ntester skrivResept:");
         spesialist.skrivHvitResept(vanlig, pasient, 3);
-        spesialist.skrivHvitResept(vanedannende, pasient2, 3);
+        spesialist.skrivHvitResept(vanedannende, pasient, 3);
         spesialist.skrivBlaaResept(narkotisk, pasient, 3);
         lege.skrivBlaaResept(vanedannende, pasient, 3);
         lege.skrivMilResept(vanedannende, pasient);
-        lege2.skrivBlaaResept(vanedannende, pasient2, 3);
+        lege2.skrivBlaaResept(vanedannende, pasient, 3);
         lege2.skrivMilResept(vanedannende, pasient);
         System.out.println("\nHenter pasient og resepter");
         System.out.println(pasient);
+        System.out.println("\nhenter lege og resepter");
+        System.out.println(lege);
+        System.out.println(lege.hentResepter());
         // gir feil med throw UlovligUtskrift
         // lege.skrivBlaaResept(narkotisk, pasient, 3);
     }

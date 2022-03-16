@@ -12,7 +12,6 @@ public class Lege implements Comparable<Lege> {
     }
 
     public IndeksertListe<Resept> hentResepter() {
-        // DETTE FUNKER IKKE. Samme problem som pasient sin hentResepter()
         return utskrevneResepter;
     }
 
@@ -67,7 +66,7 @@ public class Lege implements Comparable<Lege> {
 
     @Override
     public String toString() {
-        return "Lege: " + hentNavn();
+        return "Lege: " + hentNavn() + "\n" + hentResepter();
     }
     @Override
     // returner en int
