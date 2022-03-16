@@ -15,9 +15,10 @@ class Legesystem{
       System.out.println("File '" + filnavn + "' not found!");
     }
     
+    String innlest = sc.nextLine();
     
     while (sc.hasNextLine()){
-      String[] filen = sc.nextLine().split(" ");
+      String[] filen = innlest.split(" ");
 
       if (filen[1].compareTo("Pasienter") == 0){
         while (sc.hasNextLine()){
