@@ -10,6 +10,6 @@ public class Vanedannende extends Legemiddel{
     }
     @Override
     public String toString(){
-        return "Vanndannende legemiddel: " + navn + ", pris: " + pris + ", virkestoff: " + virkestoff + "mg, id: " + ID + ", vanedannende styrke: " + styrke;
+        return super.hentNavn() + ", Pris: " + super.hentPris() + ", Virkestoff: " + super.hentVirkestoff() + "mg, ID: " + super.hentId() + ", Vanedannende styrke: " + styrke;
     }
 }

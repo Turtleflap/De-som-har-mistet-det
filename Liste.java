@@ -1,4 +1,4 @@
-public interface Liste <T> {
+public interface Liste <T> extends Iterable<T> {
     int stoerrelse ();
     void leggTil (T x);
     T hent ();

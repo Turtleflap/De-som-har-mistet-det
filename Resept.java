@@ -23,7 +23,7 @@ public abstract class Resept {
     public Lege hentLege() {
         return utskrivendeLege;
     }
-    public Pasient hentPasientId() {
+    public Pasient hentPasient() {
         return pasient;
     }
     public int hentReit() {
@@ -40,6 +40,6 @@ public abstract class Resept {
     abstract public int prisAaBetale();
     @Override
     public String toString() {
-        return "Id: " + ID + ", legemiddel: " + legemiddel + ", lege: " + utskrivendeLege + ", pasient: " + pasient + ", reit: " + reit;
+        return "ID: " + hentId() + ", Legemiddel: " + hentLegemiddel() + ", Reit: " + hentReit();
     }
 }
