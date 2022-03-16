@@ -45,7 +45,7 @@ public class testLege {
         System.out.println("\nHenter pasient og resepter");
         System.out.println(pasient);
         System.out.println("\nhenter lege og resepter");
-        System.out.println(lege);
+        System.out.println(lege.hentResepter());
         System.out.println(lege.hentResepter());
         // gir feil med throw UlovligUtskrift
         // lege.skrivBlaaResept(narkotisk, pasient, 3);
