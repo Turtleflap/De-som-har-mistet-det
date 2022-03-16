@@ -13,8 +13,10 @@ public class testLege {
         Lege lege2 = new Lege("Hans Ryen");
         Spesialist spesialist = new Spesialist("Ola Nordmann", "ID123");
 
-        // pasient
+        // pasienter
         Pasient pasient = new Pasient("Karl", "12345612345");
+        Pasient pasient2 = new Pasient("Karl2", "12345612345");
+
 
         //tester comparable
         System.out.println("tester comparable verdier:");
@@ -34,16 +36,15 @@ public class testLege {
         //tester skrivResept
         System.out.println("\ntester skrivResept:");
         spesialist.skrivHvitResept(vanlig, pasient, 3);
-        spesialist.skrivHvitResept(vanedannende, pasient, 3);
+        spesialist.skrivHvitResept(vanedannende, pasient2, 3);
         spesialist.skrivBlaaResept(narkotisk, pasient, 3);
         lege.skrivBlaaResept(vanedannende, pasient, 3);
         lege.skrivMilResept(vanedannende, pasient);
-        lege2.skrivBlaaResept(vanedannende, pasient, 3);
+        lege2.skrivBlaaResept(vanedannende, pasient2, 3);
         lege2.skrivMilResept(vanedannende, pasient);
-        // System.out.println(pasient.hentResepter());
-        // System.out.println(lege.hentResepter());
-        // System.out.println(lege2.hentResepter());
+        System.out.println("\nHenter pasient og resepter");
+        System.out.println(pasient);
         // gir feil med throw UlovligUtskrift
-        lege.skrivBlaaResept(narkotisk, pasient, 3);
+        // lege.skrivBlaaResept(narkotisk, pasient, 3);
     }
 }

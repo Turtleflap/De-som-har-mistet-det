@@ -66,7 +66,7 @@ public class Lege implements Comparable<Lege> {
 
     @Override
     public String toString() {
-        return "Navn: " + hentNavn();
+        return "Lege: " + hentNavn();
     }
     @Override
     // returner en int

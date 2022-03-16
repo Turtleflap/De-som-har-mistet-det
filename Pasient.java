@@ -23,7 +23,7 @@ public class Pasient {
     }
 
     public Lenkeliste<Resept> hentResepter() {
-        return null;
+        return resepter;
     }
 
     public String hentNavn() {
@@ -41,6 +41,6 @@ public class Pasient {
     @Override
     public String toString() {
         return "Pasient: " + hentNavn() + ". Fodselsnummer: " + 
-        hentFodselsnummer() + ". ID: " + hentID() + ". Resepter: " + hentResepter();
+        hentFodselsnummer() + ", ID: " + hentID() + ", Resepter: " + hentResepter();
     }
 }
