@@ -38,7 +38,7 @@ public class testLege {
         spesialist.skrivHvitResept(vanlig, pasient, 3);
         spesialist.skrivHvitResept(vanedannende, pasient, 3);
         spesialist.skrivBlaaResept(narkotisk, pasient, 3);
-        lege.skrivBlaaResept(vanedannende, pasient, 3);
+        lege.skrivBlaaResept(vanlig, pasient, 3);
         lege.skrivMilResept(vanedannende, pasient);
         lege2.skrivBlaaResept(vanedannende, pasient, 3);
         lege2.skrivMilResept(vanedannende, pasient);
@@ -46,7 +46,7 @@ public class testLege {
         System.out.println(pasient);
         System.out.println("\nHenter lege og resepter");
         System.out.println(lege);
-        System.out.println(lege.hentResepter());
+        System.out.println(spesialist);
         // gir feil med throw UlovligUtskrift
         // lege.skrivBlaaResept(narkotisk, pasient, 3);
     }
