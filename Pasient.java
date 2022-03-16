@@ -41,6 +41,6 @@ public class Pasient {
     @Override
     public String toString() {
         return "Pasient: " + hentNavn() + ". Fodselsnummer: " + 
-        hentFodselsnummer() + "\n ID: " + hentID() + ", Resepter: " + hentResepter();
+        hentFodselsnummer() + "\nID: " + hentID() + ", Resepter: " + hentResepter();
     }
 }
