@@ -142,31 +142,34 @@ class Legesystem{
 		}
 	}
     private static void LeggTilISystem(){
-        int valg = 0;
         System.out.println("\nHva onsker du aa legge til?\n" +
         "0: Pasient\n" + 
         "1: Legemiddel\n" + 
         "2: Lege\n" + 
         "3: Resept" +
         "Skriv inn et av alternativene: ");
-        Scanner scn = new Scanner(System.in);
-        valg = scn.nextInt();
-        if(valg == 0){
-            System.out.println("Du valgte pasient");
-        }
-        else if(valg == 1){
-            System.out.println("Du valgte legemiddel");
-        }
-        else if(valg == 2){
-            System.out.println("Du valgte lege");
-        }
-        else if(valg == 3){
-            System.out.println("Du valgte resept");
-        }
-        else{
-            System.out.println("\nDu må velge et tall mellom 0 og 3");
-            LeggTilISystem();
-        }
+        try (Scanner scn = new Scanner(System.in)) {
+			int valg = 0;
+			valg = scn.nextInt();
+			if(valg == 0){
+				System.out.println("Du valgte pasient");
+			}
+			else if(valg == 1){
+				System.out.println("Du valgte legemiddel");
+			}
+			else if(valg == 2){
+				System.out.println("Du valgte lege");
+			}
+			else if(valg == 3){
+				System.out.println("Du valgte resept");
+			}
+			else{
+				System.out.println("\nDu må velge et tall mellom 0 og 3");
+				LeggTilISystem();
+			}
+		} catch (Exception e) {
+			System.out.println("Noe gikk galt!");
+		}
     }
 
 		public static void main(String[] args) throws NumberFormatException, UlovligUtskrift {
