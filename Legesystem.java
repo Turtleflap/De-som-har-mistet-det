@@ -146,7 +146,7 @@ class Legesystem{
 	}
     private static void LeggTilISystem(){
         int valg = 0;
-        System.out.println("\nHva ønsker du å legge til?\n" +
+        System.out.println("\nHva onsker du aa legge til?\n" +
         "0: Pasient\n" + 
         "1: Legemiddel\n" + 
         "2: Lege\n" + 
@@ -156,7 +156,6 @@ class Legesystem{
         valg = scn.nextInt();
         if(valg == 0){
             System.out.println("Du valgte pasient");
-            scn.close();
         }
         else if(valg == 1){
             System.out.println("Du valgte legemiddel");
