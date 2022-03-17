@@ -1,8 +1,8 @@
 public class Narkotisk extends Legemiddel{
     private int styrke;
 
-    public Narkotisk(String navn, int pris, double virkestoff, int styrke){
-        super(navn, pris, virkestoff);
+    public Narkotisk(String navn, double d, double virkestoff, int styrke){
+        super(navn, d, virkestoff);
         this.styrke = styrke;
     }
     public int hentNarkotiskStyrke() {

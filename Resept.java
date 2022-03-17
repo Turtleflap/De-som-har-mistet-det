@@ -37,7 +37,7 @@ public abstract class Resept {
         return false;
     }
     abstract public String farge();
-    abstract public int prisAaBetale();
+    abstract public double prisAaBetale();
     @Override
     public String toString() {
         return "ID: " + hentId() + ", Legemiddel: " + hentLegemiddel() + ", Reit: " + hentReit();

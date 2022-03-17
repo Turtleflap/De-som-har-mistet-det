@@ -1,7 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileNotFoundException;  
 class Legesystem{
 	private static IndeksertListe<Pasient> pasienter = new IndeksertListe<>();
 	private static IndeksertListe<Legemiddel> legemidler = new IndeksertListe<>();
@@ -30,7 +30,7 @@ class Legesystem{
                         type++;
                         break;
                     }
-					String[] filen = innlest.split(",");
+					String[] filen = innlest.trim().split(",");
                     Pasient nyPasient = new Pasient(filen[0], filen[1]);
                     //System.out.println(nyPasient);
 					pasienter.leggTil(nyPasient);
@@ -45,21 +45,24 @@ class Legesystem{
                         type++;
 						break;
                     }
-					String[] filen = innlest.split(",");
+                    if (innlest.charAt(innlest.length() - 1) == ',') {
+                        innlest = innlest.substring(0, innlest.length() - 1);
+                    }
+					String[] filen = innlest.trim().split(",");
                     System.out.println("la til legemiddel");                    
 					//navn, type, pris, virkestoff, [styrke]
                     if(filen[1].equals("vanlig")){
-                        Vanlig nyttVanlig = new Vanlig(filen[0], Integer.parseInt(filen[2]), Double.parseDouble(filen[3]));
+                        Vanlig nyttVanlig = new Vanlig(filen[0], Double.parseDouble(filen[2]), Double.parseDouble(filen[3]));
                         legemidler.leggTil(nyttVanlig);
 					//legg til pasient i pos
 					}
 					else if(filen[1].equals("narkotisk")){
-						Narkotisk nyttNarkotisk = new Narkotisk(filen[0], Integer.parseInt(filen[2]), Double.parseDouble(filen[3]), Integer.parseInt(filen[4]));
+						Narkotisk nyttNarkotisk = new Narkotisk(filen[0], Double.parseDouble(filen[2]), Double.parseDouble(filen[3]), Integer.parseInt(filen[4]));
 						legemidler.leggTil(nyttNarkotisk);
 					}
 					//legg til pasient i pos
 					else if(filen[1].equals("vanedannende")){
-						Vanedannende nyttVanedannende = new Vanedannende(filen[0], Integer.parseInt(filen[2]), Double.parseDouble(filen[3]), Integer.parseInt(filen[4]));
+						Vanedannende nyttVanedannende = new Vanedannende(filen[0], Double.parseDouble(filen[2]), Double.parseDouble(filen[3]), Integer.parseInt(filen[4]));
 						legemidler.leggTil(nyttVanedannende);
 					}
 					//legg til pasient i pos
@@ -94,7 +97,7 @@ class Legesystem{
                         type++;
 						break;
 					}
-					String[] filen = innlest.split(",");
+					String[] filen = innlest.trim().split(",");
                     
 					for(Lege lege : leger){
 						if(lege.hentNavn().equals(filen[1])){
@@ -157,15 +160,12 @@ class Legesystem{
         }
         else if(valg == 1){
             System.out.println("Du valgte legemiddel");
-            scn.close();
         }
         else if(valg == 2){
             System.out.println("Du valgte lege");
-            scn.close();
         }
         else if(valg == 3){
             System.out.println("Du valgte resept");
-            scn.close();
         }
         else{
             System.out.println("\nDu må velge et tall mellom 0 og 3");
@@ -188,30 +188,34 @@ class Legesystem{
 				Scanner sc = new Scanner(System.in);
 				svar = sc.nextInt();
 				if (svar == 1) {
+                    sc.close();
 					continue;
 				}
 				if (svar == 2) {
-					lesFraFil("LegeData.txt");
+					lesFraFil("LegeDataStor.txt");
 					seFullstendigOversikt();
 					continue;
 				}
 				if (svar == 3) {
+                    sc.close();
                     LeggTilISystem();
                     continue;
 				}
 				if (svar == 4) {
+                    sc.close();
 					continue;
 				}
 				if (svar == 5) {
-					continue;
+                    sc.close();
+                    continue;
 				}
 				// Hvis svaret ikke matcher noen valg, start while lokken på nytt
 				if (svar < 1 || svar > 6) {
 					System.out.println("\nTallet du valgte har ingen alternativ!");
 					continue;
 				}
+                sc.close();
 				// Lukker scanner klassen
-				sc.close();
 				// InputMismatchException gir feil hvis en string blir skrevet inn
 				// https://www.tutorialspoint.com/what-is-inputmismatchexception-in-java-how-do-we-handle-it
 			} catch (InputMismatchException e) {

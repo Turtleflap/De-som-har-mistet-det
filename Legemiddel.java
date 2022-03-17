@@ -1,11 +1,11 @@
 public abstract class Legemiddel {
     protected String navn;
-    protected int pris;
+    protected double pris;
     protected double virkestoff;
     protected int ID;
     static int oekning = 1;
 
-    public Legemiddel(String navn, int pris, double virkestoff) {
+    public Legemiddel(String navn, double pris, double virkestoff) {
         this.navn = navn;
         this.pris = pris;
         this.virkestoff = virkestoff;
@@ -18,7 +18,7 @@ public abstract class Legemiddel {
     public String hentNavn() {
         return navn;
     }
-    public int hentPris() {
+    public double hentPris() {
         return pris;
     }
     public double hentVirkestoff() {
