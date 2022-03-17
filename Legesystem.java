@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException; 
@@ -8,8 +7,8 @@ class Legesystem{
 	private static Prioritetskoe<Lege> leger = new Prioritetskoe<>();
 	private static Lenkeliste<Resept> resepter = new Lenkeliste<>();
 
-    private static Scanner user_input = new Scanner(System.in);
-//E1
+    //private static Scanner user_input = new Scanner(System.in);
+	//E1
 	private static void lesFraFil(String filnavn) throws NumberFormatException, UlovligUtskrift {
 		File f = new File(filnavn);
 		Scanner sc = null;
@@ -207,7 +206,7 @@ class Legesystem{
 				leggTilPasient(sc);
 			}
 			else if (valg.equals("2")){
-                continue;
+				leggTilLegemiddel(sc);
 			}
 			else if (valg.equals("3")){
 				continue;
@@ -240,12 +239,10 @@ class Legesystem{
 	}
     public static void leggTilLegemiddel(Scanner sc){
 		String navn;
-		String type;
 		int pris;
 		double virkestoff;
         int styrke;
-        Legemiddel legemiddel;
-		//Meny for å vlege type legemiddel:
+		//Meny for aa vlege type legemiddel:
 
 		String valg = "";
 		String typerLegemiddel = "\n Hvilken type har legemiddelet?"
@@ -263,14 +260,14 @@ class Legesystem{
 				System.out.println("Navn: ");
 				navn = sc.nextLine();
 				System.out.println("Pris");
-				pris = sc.nextLine();
+				pris = ((int) Math.round(sc.nextDouble()));
 				System.out.println("Virkestoff: ");
-				virkestoff = sc.nextLine();
+				virkestoff = sc.nextDouble();
 				System.out.println("Styrke: ");
-				styrke = sc.nextLine();
+				styrke = sc.nextInt();
 
-				nyttNarkotisk = new Narkotisk(navn, pris, virkestoff, styrke);
-				legemiddel.leggTil(nyttNarkotisk);
+				Narkotisk nyttNarkotisk = new Narkotisk(navn, pris, virkestoff, styrke);
+				legemidler.leggTil(nyttNarkotisk);
 
 
 			}
@@ -278,25 +275,25 @@ class Legesystem{
 				System.out.println("Navn: ");
 				navn = sc.nextLine();
 				System.out.println("Pris");
-				pris = sc.nextLine();
+				pris = ((int) Math.round(sc.nextDouble()));
 				System.out.println("Virkestoff: ");
-				virkestoff = sc.nextLine();
+				virkestoff = sc.nextDouble();
 				System.out.println("Styrke: ");
-				styrke = sc.nextLine();
+				styrke = sc.nextInt();
 
-				nyttVanedannende = new Vanedannende(navn, pris, virkestoff, styrke);
-				legemiddel.leggTil(nyttVanedannende);
+				Vanedannende nyttVanedannende = new Vanedannende(navn, pris, virkestoff, styrke);
+				legemidler.leggTil(nyttVanedannende);
 			}
 			else if (valg.equals("3")){ //vanlig
 				System.out.println("Navn: ");
 				navn = sc.nextLine();
 				System.out.println("Pris");
-				pris = sc.nextLine();
+				pris = ((int) Math.round(sc.nextDouble()));
 				System.out.println("Virkestoff: ");
-				virkestoff = sc.nextLine();
+				virkestoff = sc.nextDouble();
 
-				nyVanlig = new Vanedannende(navn, pris, virkestoff);
-				legemiddel.leggTil(nyVanlig);
+				Vanlig nyVanlig = new Vanlig(navn, pris, virkestoff);
+				legemidler.leggTil(nyVanlig);
 			}
 			else if (valg.equals("4")){ 
 				return;
