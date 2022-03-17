@@ -126,7 +126,7 @@ class Legesystem{
 	private static void seFullstendigOversikt() {
 		System.out.println("Pasienter:\n");
 		for(Pasient pasient : pasienter){
-			System.out.println(pasient);
+			System.out.println(pasient.hentNavn());
 		}
 		System.out.println("\nLegemidler:\n");
 		for(Legemiddel legemiddel : legemidler){
@@ -134,13 +134,44 @@ class Legesystem{
 		}
 		System.out.println("\nLeger:\n");
 		for(Lege lege : leger){
-		System.out.println(lege);
+		System.out.println(lege.hentNavn());
 		}
 		System.out.println("\nResepter:\n");
 		for(Resept resept : resepter){
 			System.out.println(resept);
 		}
 	}
+    private static void LeggTilISystem(){
+        int valg = 0;
+        System.out.println("\nHva ønsker du å legge til?\n" +
+        "0: Pasient\n" + 
+        "1: Legemiddel\n" + 
+        "2: Lege\n" + 
+        "3: Resept" +
+        "Skriv inn et av alternativene: ");
+        Scanner scn = new Scanner(System.in);
+        valg = scn.nextInt();
+        if(valg == 0){
+            System.out.println("Du valgte pasient");
+            scn.close();
+        }
+        else if(valg == 1){
+            System.out.println("Du valgte legemiddel");
+            scn.close();
+        }
+        else if(valg == 2){
+            System.out.println("Du valgte lege");
+            scn.close();
+        }
+        else if(valg == 3){
+            System.out.println("Du valgte resept");
+            scn.close();
+        }
+        else{
+            System.out.println("\nDu må velge et tall mellom 0 og 3");
+            LeggTilISystem();
+        }
+    }
 
 		public static void main(String[] args) throws NumberFormatException, UlovligUtskrift {
 		int svar = 0;
@@ -165,7 +196,8 @@ class Legesystem{
 					continue;
 				}
 				if (svar == 3) {
-					continue;
+                    LeggTilISystem();
+                    continue;
 				}
 				if (svar == 4) {
 					continue;
