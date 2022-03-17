@@ -1,6 +1,6 @@
 public class Vanlig extends Legemiddel{
-    public Vanlig(String navn, double d, double virkestoff) {
-        super(navn, d, virkestoff);
+    public Vanlig(String navn, int pris, double virkestoff) {
+        super(navn, pris, virkestoff);
     }
     @Override
     public String toString(){

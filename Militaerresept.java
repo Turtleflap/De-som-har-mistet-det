@@ -3,7 +3,7 @@ public class Militaerresept extends HvitResept{
         super(legemiddel, lege, pasient, 3);
     }
     @Override
-    public double prisAaBetale() {
+    public int prisAaBetale() {
         return 0;
     }
 }

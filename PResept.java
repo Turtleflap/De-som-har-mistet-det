@@ -3,7 +3,7 @@ public class PResept extends HvitResept{
         super(legemiddel, lege, pasient, reit);
     }
     @Override
-    public double prisAaBetale() {
+    public int prisAaBetale() {
         if (legemiddel.hentPris() <= 108) {
             return 0;
         }

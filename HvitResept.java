@@ -9,7 +9,7 @@ public class HvitResept extends Resept{
         return farge;
     }
     @Override
-    public double prisAaBetale() {
+    public int prisAaBetale() {
         return legemiddel.hentPris();
     }
     @Override

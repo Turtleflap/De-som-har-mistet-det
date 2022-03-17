@@ -1,13 +1,15 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.File;
-import java.io.FileNotFoundException;  
+import java.io.FileNotFoundException; 
 class Legesystem{
 	private static IndeksertListe<Pasient> pasienter = new IndeksertListe<>();
 	private static IndeksertListe<Legemiddel> legemidler = new IndeksertListe<>();
 	private static Prioritetskoe<Lege> leger = new Prioritetskoe<>();
 	private static Lenkeliste<Resept> resepter = new Lenkeliste<>();
 
+    private static Scanner user_input = new Scanner(System.in);
+//E1
 	private static void lesFraFil(String filnavn) throws NumberFormatException, UlovligUtskrift {
 		File f = new File(filnavn);
 		Scanner sc = null;
@@ -52,17 +54,18 @@ class Legesystem{
                     System.out.println("la til legemiddel");                    
 					//navn, type, pris, virkestoff, [styrke]
                     if(filen[1].equals("vanlig")){
-                        Vanlig nyttVanlig = new Vanlig(filen[0], Double.parseDouble(filen[2]), Double.parseDouble(filen[3]));
+						// Runder til nærmeste heltall og caster fra double til int
+                        Vanlig nyttVanlig = new Vanlig(filen[0], ((int) Math.round(Double.parseDouble(filen[2]))), Double.parseDouble(filen[3]));
                         legemidler.leggTil(nyttVanlig);
 					//legg til pasient i pos
 					}
 					else if(filen[1].equals("narkotisk")){
-						Narkotisk nyttNarkotisk = new Narkotisk(filen[0], Double.parseDouble(filen[2]), Double.parseDouble(filen[3]), Integer.parseInt(filen[4]));
+						Narkotisk nyttNarkotisk = new Narkotisk(filen[0], ((int) Math.round(Double.parseDouble(filen[2]))), Double.parseDouble(filen[3]), Integer.parseInt(filen[4]));
 						legemidler.leggTil(nyttNarkotisk);
 					}
 					//legg til pasient i pos
 					else if(filen[1].equals("vanedannende")){
-						Vanedannende nyttVanedannende = new Vanedannende(filen[0], Double.parseDouble(filen[2]), Double.parseDouble(filen[3]), Integer.parseInt(filen[4]));
+						Vanedannende nyttVanedannende = new Vanedannende(filen[0], ((int) Math.round(Double.parseDouble(filen[2]))), Double.parseDouble(filen[3]), Integer.parseInt(filen[4]));
 						legemidler.leggTil(nyttVanedannende);
 					}
 					//legg til pasient i pos
@@ -126,101 +129,191 @@ class Legesystem{
 			}
 		}
 	}
+	//E2
+	public static void meny(){
+		String valg = "";
+		String meny = "\n__Legesystem__"
+		+"\nVelg et alternativ"
+		+"\n1: Se fullstendig oversikt" 
+		+"\n2: Legge til et nytt element" 
+		+"\n3: Bruk en resept" 
+		+"\n4: Se statistikk" 
+		+"\n5: Skriv data til fil" 
+		+"\n6: Avslutt programmet";
+		Scanner sc = new Scanner(System.in);
+
+		while (!valg.equals("6")){
+			System.out.println(meny);
+
+			valg = sc.nextLine();
+			if (valg.equals("1")){
+				seFullstendigOversikt();
+			}
+			else if (valg.equals("2")){
+                leggTilISystem(sc);
+			}
+			else if (valg.equals("3")){
+				continue;
+			}
+			else if (valg.equals("4")){
+				continue;
+			}
+			else if (valg.equals("5")){
+				continue;
+			}
+			else {
+				System.out.println("\nUgyldig input!");
+			}
+		}
+		System.out.println("--- Programmet er avsluttet ---");
+	}
+	//E3
 	private static void seFullstendigOversikt() {
-		System.out.println("Pasienter:\n");
+		System.out.println("__Alle elementer i systemet__");
+		System.out.println("\n__Pasienter__");
 		for(Pasient pasient : pasienter){
 			System.out.println(pasient.hentNavn());
 		}
-		System.out.println("\nLegemidler:\n");
+		System.out.println("\n__Legemidler__\n");
 		for(Legemiddel legemiddel : legemidler){
 			System.out.println(legemiddel);
 		}
-		System.out.println("\nLeger:\n");
+		System.out.println("\n__Leger__\n");
 		for(Lege lege : leger){
-		System.out.println(lege.hentNavn());
+			System.out.println(lege.hentNavn());
 		}
-		System.out.println("\nResepter:\n");
+		System.out.println("\n__Resepter__\n");
 		for(Resept resept : resepter){
 			System.out.println(resept);
 		}
 	}
-    private static void LeggTilISystem(){
-        int valg = 0;
-        System.out.println("\nHva onsker du aa legge til?\n" +
-        "0: Pasient\n" + 
-        "1: Legemiddel\n" + 
-        "2: Lege\n" + 
-        "3: Resept" +
-        "Skriv inn et av alternativene: ");
-        Scanner scn = new Scanner(System.in);
-        valg = scn.nextInt();
-        if(valg == 0){
-            System.out.println("Du valgte pasient");
-        }
-        else if(valg == 1){
-            System.out.println("Du valgte legemiddel");
-        }
-        else if(valg == 2){
-            System.out.println("Du valgte lege");
-        }
-        else if(valg == 3){
-            System.out.println("Du valgte resept");
-        }
-        else{
-            System.out.println("\nDu må velge et tall mellom 0 og 3");
-            LeggTilISystem();
-        }
-    }
+	//E4
+	public static void leggTilISystem(Scanner sc){ //legge til nye elementer i Legesystemet
+		String valg = "";
+		String elementer = "\n__Elementer__"
+		+"\nHvilket element onsker du aa legge til?"
+		+"\n1: Pasient" 
+		+"\n2: Legemiddel" 
+		+"\n3: Lege" 
+		+"\n4: Resept" 
+		+"\n5: Tilbake til meny!"
+		+"\nSkriv inn et av alternativene:";
 
-		public static void main(String[] args) throws NumberFormatException, UlovligUtskrift {
-		int svar = 0;
-		while (svar != 6) {
-			try {
-				System.out.println("Velg et alternativ\n" +
-				"1: Se fullstendig oversikt\n" +
-				"2: Legge til et nytt element\n" +
-				"3: Bruk en resept\n" +
-				"4: Se statistikk\n" +
-				"5: Skriv data til fil\n" +
-				"6: Avslutt programmet");
-				System.out.print("Skriv inn alternativ: ");
-				Scanner sc = new Scanner(System.in);
-				svar = sc.nextInt();
-				if (svar == 1) {
-                    sc.close();
-					continue;
-				}
-				if (svar == 2) {
-					lesFraFil("LegeDataStor.txt");
-					seFullstendigOversikt();
-					continue;
-				}
-				if (svar == 3) {
-                    sc.close();
-                    LeggTilISystem();
-                    continue;
-				}
-				if (svar == 4) {
-                    sc.close();
-					continue;
-				}
-				if (svar == 5) {
-                    sc.close();
-                    continue;
-				}
-				// Hvis svaret ikke matcher noen valg, start while lokken på nytt
-				if (svar < 1 || svar > 6) {
-					System.out.println("\nTallet du valgte har ingen alternativ!");
-					continue;
-				}
-                sc.close();
-				// Lukker scanner klassen
-				// InputMismatchException gir feil hvis en string blir skrevet inn
-				// https://www.tutorialspoint.com/what-is-inputmismatchexception-in-java-how-do-we-handle-it
-			} catch (InputMismatchException e) {
-				System.out.println("Aksepterer bare tall!\n");
+		while (!valg.equals("5")){
+			System.out.println(elementer);
+
+			valg = sc.nextLine();
+			if (valg.equals("1")){
+				leggTilPasient(sc);
+			}
+			else if (valg.equals("2")){
+                continue;
+			}
+			else if (valg.equals("3")){
+				continue;
+			}
+			else if (valg.equals("4")){
+				continue;
+			}
+			else if (valg.equals("5")){ 
+				return;
+			}
+			else {
+				System.out.println("\nUgyldig input!");
 			}
 		}
-		System.out.println("--- Avsluttet programmet ---");
+		System.out.println("--- Programmet er avsluttet ---");
+	}
+
+	public static void leggTilPasient(Scanner sc){
+		String navn;
+		String fnr;
+		Pasient nyPasient;
+
+		System.out.println("Navn: ");
+        navn = sc.nextLine();
+        System.out.println("Fodselsnummer: ");
+        fnr = sc.nextLine();
+        nyPasient = new Pasient(navn, fnr);
+        pasienter.leggTil(nyPasient);
+		System.out.println(pasienter);
+	}
+    public static void leggTilLegemiddel(Scanner sc){
+		String navn;
+		String type;
+		int pris;
+		double virkestoff;
+        int styrke;
+        Legemiddel legemiddel;
+		//Meny for å vlege type legemiddel:
+
+		String valg = "";
+		String typerLegemiddel = "\n Hvilken type har legemiddelet?"
+		+"\n 1: Narkotisk"
+		+"\n 2: Vanedannende"
+		+"\n 3: Vanlig"
+		+"\n 4: Tilbake"
+		+"\nSkriv inn et av alternativene:";
+
+		while (!valg.equals("4")){
+			System.out.println(typerLegemiddel);
+
+			valg = sc.nextLine();
+			if (valg.equals("1")){ //Narkotisk
+				System.out.println("Navn: ");
+				navn = sc.nextLine();
+				System.out.println("Pris");
+				pris = sc.nextLine();
+				System.out.println("Virkestoff: ");
+				virkestoff = sc.nextLine();
+				System.out.println("Styrke: ");
+				styrke = sc.nextLine();
+
+				nyttNarkotisk = new Narkotisk(navn, pris, virkestoff, styrke);
+				legemiddel.leggTil(nyttNarkotisk);
+
+
+			}
+			else if (valg.equals("2")){ //Vanedannende
+				System.out.println("Navn: ");
+				navn = sc.nextLine();
+				System.out.println("Pris");
+				pris = sc.nextLine();
+				System.out.println("Virkestoff: ");
+				virkestoff = sc.nextLine();
+				System.out.println("Styrke: ");
+				styrke = sc.nextLine();
+
+				nyttVanedannende = new Vanedannende(navn, pris, virkestoff, styrke);
+				legemiddel.leggTil(nyttVanedannende);
+			}
+			else if (valg.equals("3")){ //vanlig
+				System.out.println("Navn: ");
+				navn = sc.nextLine();
+				System.out.println("Pris");
+				pris = sc.nextLine();
+				System.out.println("Virkestoff: ");
+				virkestoff = sc.nextLine();
+
+				nyVanlig = new Vanedannende(navn, pris, virkestoff);
+				legemiddel.leggTil(nyVanlig);
+			}
+			else if (valg.equals("4")){ 
+				return;
+			}
+			else {
+				System.out.println("\nUgyldig input!");
+			}
+			
+		}
+		
+		
+	}
+    public static void main(String[] args) throws NumberFormatException, UlovligUtskrift {
+
+        lesFraFil("LegeData.txt");
+        // lesFraFil("nyStorFil.txt");
+
+        meny();
 	}
 }
