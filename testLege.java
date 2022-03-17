@@ -40,7 +40,7 @@ public class testLege {
         spesialist.skrivBlaaResept(narkotisk, pasient, 3);
         lege.skrivBlaaResept(vanedannende, pasient, 3);
         lege.skrivMilResept(vanedannende, pasient);
-        lege2.skrivBlaaResept(vanedannende, pasient, 3);
+        lege2.skrivBlaaResept(vanlig, pasient, 3);
         lege2.skrivMilResept(vanedannende, pasient);
         System.out.println("\nHenter pasient og resepter");
         System.out.println(pasient);

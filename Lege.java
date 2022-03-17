@@ -52,11 +52,9 @@ public class Lege implements Comparable<Lege> {
     }
 
     public BlaaResept skrivBlaaResept (Legemiddel legemiddel, Pasient pasient, int reit) throws UlovligUtskrift {
-        if (legemiddel instanceof Narkotisk) {
+        if ((legemiddel instanceof Narkotisk) && !(this instanceof Spesialist)){
             // hvis ikke et objekt av Spesialist
-            if (!(this instanceof Spesialist)) {
-                throw new UlovligUtskrift(this, legemiddel);
-            }
+            throw new UlovligUtskrift(this, legemiddel);
         }
         BlaaResept blaaResept = new BlaaResept(legemiddel, this, pasient, reit);
         utskrevneResepter.leggTil(blaaResept);
