@@ -7,7 +7,6 @@ class Legesystem{
 	private static Prioritetskoe<Lege> leger = new Prioritetskoe<>();
 	private static Lenkeliste<Resept> resepter = new Lenkeliste<>();
 
-    //private static Scanner user_input = new Scanner(System.in);
 	//E1
 	private static void lesFraFil(String filnavn) throws NumberFormatException, UlovligUtskrift {
 		File f = new File(filnavn);
@@ -441,18 +440,23 @@ class Legesystem{
 		//Resept type
 		System.out.println("Velg en respt: ");
 		String typerResept = "\n Hvilken type har resept?"
-		+"\n 1: blå"
+		+"\n 1: blaa"
 		+"\n 2: hvit"
-		+"\n 3: militær"
-		+"\n 4: p-resept"
-		+"\nSkriv inn et av alternativene:";
+		+"\n 3: militaer"
+		+"\n 4: p-resept";
 		System.out.println(typerResept);
+		if(legemiddelet.hentType().equals("Narkotisk")){
+			System.out.println("Du har valgt narkotisk, så velg blå resept:");
+		}
+		else{
+			System.out.println("Velg en resept:");
+		}
 		valg = sc.nextLine();
 		while (!(valg.equals("1") || valg.equals("2") || valg.equals("3") || valg.equals("4"))){
-			System.out.println("Du må velge et av tall-alternativene 1-4");
+			System.out.println("Du maa velge et av tall-alternativene 1-4");
 			valg = sc.nextLine();
 		}
-		System.out.println("\n velg et antall for reit");
+		System.out.println("\nvelg et antall for reit");
 		reit = sc.nextInt();
 		if(valg.equals("1")){
 			BlaaResept blaa = utskriftslege.skrivBlaaResept(legemiddelet, pasienten, reit);
@@ -470,36 +474,11 @@ class Legesystem{
 			PResept p = utskriftslege.skrivPResept(legemiddelet, pasienten, reit);
 			resepter.leggTil(p);
 		}
-		/*while (!valg.equals(null)){
-			System.out.println(typeLege);
-			valg = sc.nextLine();
-
-			if (valg.equals("1")){
-				System.out.println("Navn: ");
-				navn = sc.nextLine();
-				System.out.println("KontrollID: ");
-				kontrollId = sc.nextLine();
-				if(kontrollId.equals("")){
-					System.out.println("Du maa skrive en ID");
-					return;
-				}
-				else{
-					Spesialist nySpesialist = new Spesialist(navn, kontrollId);
-					leger.leggTil(nySpesialist);
-				}
-			}
-			if (valg.equals("2")){
-				System.out.println("Navn: ");
-				navn = sc.nextLine();
-				Lege nyLege = new Lege(navn);
-				leger.leggTil(nyLege);
-			}
-			if (valg.equals("3")){
-				return;
-			}
-		}
-		*/
-
+	}
+	public static void brukResept(Scanner sc){
+		//velg pasient
+		//velg resept
+		//tilbke til hovedmeny
 	}
     public static void main(String[] args) throws NumberFormatException, UlovligUtskrift {
 
