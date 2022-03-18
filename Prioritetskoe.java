@@ -67,4 +67,20 @@ public class Prioritetskoe<T extends Comparable<T> > extends Lenkeliste <T>{
         storrelse--;
         return tmp.x;
     }
+    @Override
+    public int stoerrelse(){
+        return storrelse;
+    }
+    public T hent(int pos){
+        if(pos >= 0 && pos < stoerrelse()){
+            Node tmp = forste;
+            for(int i = 0; i < pos; i++){
+                tmp = tmp.neste;
+            }
+            return tmp.x;
+        }
+        else{
+            throw new UgyldigListeindeks(pos); 
+        }
+    }
 }

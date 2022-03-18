@@ -10,6 +10,10 @@ public class Lege implements Comparable<Lege> {
     public String hentNavn() {
         return navn;
     }
+    
+    public String hentType() {
+        return "Lege";
+    }
 
     public IndeksertListe<Resept> hentResepter() {
         return utskrevneResepter;

@@ -27,6 +27,7 @@ public abstract class Legemiddel {
     public void nyPris(int nyPris) {
         pris = nyPris;
     }
+    abstract public String hentType();
 
     public String toString(){
         return "Legemiddel: " + hentNavn() + ", Pris: " + hentPris() + ", Virkestoff: " + hentVirkestoff() + "mg, ID: " + hentId();
