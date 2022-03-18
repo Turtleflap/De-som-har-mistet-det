@@ -319,7 +319,7 @@ class Legesystem{
 			System.out.println(typeLege);
 			valg = sc.nextLine();
 
-			if (valg.equals("1"){
+			if (valg.equals("1")) {
 				System.out.println("Navn: ");
 				navn = sc.nextLine();
 				System.out.println("KontrollID: ");
@@ -327,7 +327,7 @@ class Legesystem{
 				if(kontrollId.equals("")){
 					System.out.println("Du maa skrive en ID");
 					return;
-				else{
+                } else {
 					Spesialist nySpesialist = new Spesialist(navn, kontrollId);
 					leger.leggTil(nySpesialist);
 				}
