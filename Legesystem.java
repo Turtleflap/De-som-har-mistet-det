@@ -457,33 +457,39 @@ class Legesystem{
 		//velg resept
 		String listeResepter = "\nHvilken resept vil du bruke?";
 		
-		//tilbke til hovedmeny
+		//tilbake til hovedmeny
 	}
+
+	// public static void statistikk(Scanner sc){
+	// 	String valg = "";
+	// 	String statistikk = "\n Hvilket legemiddel vil du se statistikk for?"
+	// 	+"\n 1: vanedannende"
+	// 	+"\n 2: narkotisk"
+	// 	+"\n 3: tilbake";
+	// 	while (!valg.equals("3")){
+	// 		System.out.println(statistikk);
+	// 		valg = sc.nextLine();
+	// 		if (valg.equals("1")){
+	// 			for(Resept resept : resepter){
+	// 				/*if(resepter instanceof Vanedannende){
+	// 					return;
+	// 				}*/
+	// 			}
+	// 		}
+	// 		else if (valg.equals("2")){
+	// 			System.out.println("hei");
+	// 		}
+	// 		else if (!valg.equals("3")){
+	// 			System.out.println("\nUgyldig input!");
+	// 			continue;
+	// 		}
+	// 	}
+	// }
+
 	public static void statistikk(Scanner sc){
-		String valg = "";
-		String statistikk = "\n Hvilket legemiddel vil du se statistikk for?"
-		+"\n 1: vanedannende"
-		+"\n 2: narkotisk"
-		+"\n 3: tilbake";
-		while (!valg.equals("3")){
-			System.out.println(statistikk);
-			valg = sc.nextLine();
-			if (valg.equals("1")){
-				for(Resept resept : resepter){
-					/*if(resepter instanceof Vanedannende){
-						return;
-					}*/
-				}
-			}
-			else if (valg.equals("2")){
-				System.out.println("hei");
-			}
-			else if (!valg.equals("3")){
-				System.out.println("\nUgyldig input!");
-				continue;
-			}
-		}
+		
 	}
+
 	public static void skrivTilFil(String filnavn) {
 		// sTom er en tom streng som bygges opp av hvilket legemiddel som skal legges til
 		PrintWriter f = null;
