@@ -125,7 +125,7 @@ class Legesystem{
 		}
 	}
 	//E2
-	public static void meny(){
+	public static void meny() throws UlovligUtskrift{
 		String valg = "";
 		String meny = "\n__Legesystem__"
 		+"\nVelg et alternativ"
@@ -183,7 +183,7 @@ class Legesystem{
 		}
 	}
 	//E4
-	public static void leggTilISystem(Scanner sc){ //legge til nye elementer i Legesystemet
+	public static void leggTilISystem(Scanner sc) throws UlovligUtskrift{ //legge til nye elementer i Legesystemet
 		String valg = "";
 		String elementer = "\n__Elementer__"
 		+"\nHvilket element onsker du aa legge til?"
@@ -364,37 +364,29 @@ class Legesystem{
 			}
 		}
 	}
-	public static void leggTilResept(Scanner sc){
+	public static void leggTilResept(Scanner sc) throws UlovligUtskrift{
 		int legeId;
 		int legemiddelId;
-		System.out.println("Velg en lege:");
-		int teller = 0;
-		for(Lege lege : leger){
-			teller++;
-			System.out.println(teller + ": " + lege.hentNavn());
-		}
-		System.out.println("Velg en av legene: ");
-		legeId = sc.nextInt();
-		
-		if(legeId <= (leger.stoerrelse()) && legeId >= 1){
-			Lege utskriftslege = leger.hent(legeId - 1);
-			System.out.println(utskriftslege.hentNavn());
-		}
-		else{
-			System.out.println("Uyldig input!");
-			return;
-		}
+		int pasientId;
+		int reit;
+		String valg;
+		Legemiddel legemiddelet = null;
+		Lege utskriftslege = null;
+		Pasient pasienten = null;
+
+
+		//legemiddel
 		System.out.println("Velg et legemiddel: ");
 		for(Legemiddel legemiddel : legemidler){
 			System.out.println(legemiddel.hentId() + ": " + legemiddel.hentNavn() + "(" +legemiddel.hentType() + ")");
 		}
 		legemiddelId = sc.nextInt();
-		teller = 0;
+		int teller = 0;
 		if(legemiddelId <= (legemidler.stoerrelse()) && legemiddelId >= 1){
 			for(Legemiddel legemiddel : legemidler){
 				teller ++;
 				if(legemiddelId == legemiddel.hentId()){
-					Legemiddel legemiddelet = legemidler.hent(teller - 1);
+					legemiddelet = legemidler.hent(teller - 1);
 					System.out.println(legemiddelet);
 				}
 			}
@@ -403,6 +395,106 @@ class Legesystem{
 			System.out.println("Uyldig input!");
 			return;
 		}
+		//lege
+		System.out.println("Velg en lege:");
+		teller = 0;
+		for(Lege lege : leger){
+			teller++;
+			System.out.println(teller + ": " + lege.hentNavn());
+		}
+		System.out.println("Velg en av legene: ");
+		legeId = sc.nextInt();
+		
+		if(legeId <= (leger.stoerrelse()) && legeId >= 1){
+			utskriftslege = leger.hent(legeId - 1);
+			System.out.println(utskriftslege.hentNavn());
+		}
+		else{
+			System.out.println("Uyldig input!");
+			return;
+		}
+		//pasient
+		System.out.println("Velg en pasient: ");
+		for(Pasient pasient : pasienter){
+			System.out.println(pasient.hentID() + ": " + pasient.hentNavn());
+		}
+		pasientId = sc.nextInt();
+		teller = 0;
+		if(pasientId <= (pasienter.stoerrelse()) && pasientId >= 1){
+			for(Pasient pasient : pasienter){
+				teller ++;
+				if(pasientId == pasient.hentID()){
+					pasienten = pasienter.hent(teller - 1);
+					System.out.println(pasienten);
+				}
+			}
+		}
+		else{
+			System.out.println("Uyldig input!");
+			return;
+		}
+		//Resept type
+		System.out.println("Velg en respt: ");
+		String typerResept = "\n Hvilken type har resept?"
+		+"\n 1: blå"
+		+"\n 2: hvit"
+		+"\n 3: militær"
+		+"\n 4: p-resept"
+		+"\nSkriv inn et av alternativene:";
+		System.out.println(typerResept);
+		valg = sc.nextLine();
+		while (!(valg.equals("1") || valg.equals("2") || valg.equals("3") || valg.equals("4"))){
+			System.out.println("Du må velge et av tall-alternativene 1-4");
+			valg = sc.nextLine();
+		}
+		System.out.println("\n velg et antall for reit");
+		reit = sc.nextInt();
+		if(valg.equals("1")){
+			BlaaResept blaa = utskriftslege.skrivBlaaResept(legemiddelet, pasienten, reit);
+			resepter.leggTil(blaa);
+		}
+		else if(valg.equals("2")){
+			HvitResept hvit = utskriftslege.skrivHvitResept(legemiddelet, pasienten, reit);
+			resepter.leggTil(hvit);
+		}
+		else if(valg.equals("3")){
+			Militaerresept militaer = utskriftslege.skrivMilResept(legemiddelet, pasienten);
+			resepter.leggTil(militaer);
+		}
+		else{
+			PResept p = utskriftslege.skrivPResept(legemiddelet, pasienten, reit);
+			resepter.leggTil(p);
+		}
+		/*while (!valg.equals(null)){
+			System.out.println(typeLege);
+			valg = sc.nextLine();
+
+			if (valg.equals("1")){
+				System.out.println("Navn: ");
+				navn = sc.nextLine();
+				System.out.println("KontrollID: ");
+				kontrollId = sc.nextLine();
+				if(kontrollId.equals("")){
+					System.out.println("Du maa skrive en ID");
+					return;
+				}
+				else{
+					Spesialist nySpesialist = new Spesialist(navn, kontrollId);
+					leger.leggTil(nySpesialist);
+				}
+			}
+			if (valg.equals("2")){
+				System.out.println("Navn: ");
+				navn = sc.nextLine();
+				Lege nyLege = new Lege(navn);
+				leger.leggTil(nyLege);
+			}
+			if (valg.equals("3")){
+				return;
+			}
+		}
+		*/
+
 	}
     public static void main(String[] args) throws NumberFormatException, UlovligUtskrift {
 
