@@ -400,9 +400,14 @@ class Legesystem{
 		teller = 0;
 		for(Lege lege : leger){
 			teller++;
-			System.out.println(teller + ": " + lege.hentNavn());
+			System.out.println(teller + ": " + lege.hentNavn() + "(" + lege.hentType() + ")");
 		}
-		System.out.println("Velg en av legene: ");
+		if(legemiddelet.hentType().equals("Narkotisk")){
+			System.out.println("Velg en av legene (du valgte narkotisk, så velg en spesialist): ");
+		}
+		else{
+			System.out.println("Velg en av legene: ");
+		}
 		legeId = sc.nextInt();
 		
 		if(legeId <= (leger.stoerrelse()) && legeId >= 1){
