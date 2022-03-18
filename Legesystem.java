@@ -498,7 +498,8 @@ class Legesystem{
 
 		f.println("# Pasienter (navn, fnr)");
 		for(Pasient pasient : pasienter) {
-			f.println(pasient.hentNavn() + "," + pasient.hentFodselsnummer());
+			sTom = pasient.hentNavn() + "," + pasient.hentFodselsnummer();
+            f.println(sTom);
 		}
 
 		f.println("# Legemidler (navn,type,pris,virkestoff,[styrke])");
