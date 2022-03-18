@@ -31,7 +31,6 @@ class Legesystem{
                     }
 					String[] filen = innlest.trim().split(",");
                     Pasient nyPasient = new Pasient(filen[0], filen[1]);
-                    //System.out.println(nyPasient);
 					pasienter.leggTil(nyPasient);
 				}
 			}
@@ -51,18 +50,15 @@ class Legesystem{
 						// Runder til nærmeste heltall og caster fra double til int
                         Vanlig nyttVanlig = new Vanlig(filen[0], ((int) Math.round(Double.parseDouble(filen[2]))), Double.parseDouble(filen[3]));
                         legemidler.leggTil(nyttVanlig);
-					//legg til pasient i pos
 					}
 					else if(filen[1].equals("narkotisk")){
 						Narkotisk nyttNarkotisk = new Narkotisk(filen[0], ((int) Math.round(Double.parseDouble(filen[2]))), Double.parseDouble(filen[3]), Integer.parseInt(filen[4]));
 						legemidler.leggTil(nyttNarkotisk);
 					}
-					//legg til pasient i pos
 					else if(filen[1].equals("vanedannende")){
 						Vanedannende nyttVanedannende = new Vanedannende(filen[0], ((int) Math.round(Double.parseDouble(filen[2]))), Double.parseDouble(filen[3]), Integer.parseInt(filen[4]));
 						legemidler.leggTil(nyttVanedannende);
 					}
-					//legg til pasient i pos
 				}
 			}
 			if (type == 2){
@@ -368,7 +364,7 @@ class Legesystem{
 		int legemiddelId;
 		int pasientId;
 		int reit;
-		String valg;
+		String valg = null;
 		Legemiddel legemiddelet = null;
 		Lege utskriftslege = null;
 		Pasient pasienten = null;
@@ -452,9 +448,11 @@ class Legesystem{
 			System.out.println("Velg en resept:");
 		}
 		valg = sc.nextLine();
-		while (!(valg.equals("1") || valg.equals("2") || valg.equals("3") || valg.equals("4"))){
-			System.out.println("Du maa velge et av tall-alternativene 1-4");
-			valg = sc.nextLine();
+		if(valg != null){
+			while (!(valg.equals("1") || valg.equals("2") || valg.equals("3") || valg.equals("4"))){
+				System.out.println("Du maa velge et av tall-alternativene 1-4");
+				valg = sc.nextLine();
+			}
 		}
 		System.out.println("\nvelg et antall for reit");
 		reit = sc.nextInt();
