@@ -1,6 +1,6 @@
 # Oblig-innlevering-4
 
-![example workflow](https://De-som-har-mistet-det/edit/main/README.md/badge.svg)
+![Status](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?branch=main)
 
 Innlevering for oppgave 4 i IN1010
 
