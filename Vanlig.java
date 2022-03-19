@@ -9,4 +9,4 @@ public class Vanlig extends Legemiddel{
     public String toString(){
         return super.hentNavn() + ", Vanlig" + ", Pris: " + super.hentPris() + ", Virkestoff: " + super.hentVirkestoff() + "mg, ID: " + super.hentId();
     }
-}
+} 
