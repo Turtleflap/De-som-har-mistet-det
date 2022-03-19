@@ -144,19 +144,14 @@ class Legesystem{
 			}
 			else if (valg.equals("3")){
 				brukResept(sc);
-				continue;
 			}
 			else if (valg.equals("4")){
 				seStatestikk(sc);
-				continue;
 			}
 			else if (valg.equals("5")){
 				skrivTilFil("test.txt");
 			}
-			else if (!valg.equals("6")) {
-				System.out.println("\nUgyldig input!");
-				continue;
-			}
+			System.out.println("\nUgyldig input!");
 		}
 		sc.close();
 		System.out.println("__Programmet er avsluttet__");
@@ -209,12 +204,9 @@ class Legesystem{
 			else if (valg.equals("4")){
 				leggTilResept(sc);
 			}
-			else if (!valg.equals("5")){
-				System.out.println("\nUgyldig input!"); //gir nytt forsok
-				continue;
-			}
+			System.out.println("\nUgyldig input!");
 		}
-		System.out.println("\n__Tilbake til Hovedmeny__"); //gaar tilbke til hovedmeny
+		System.out.println("\n__Tilbake til Hovedmeny__");
 		return;
 	}
 
@@ -298,11 +290,8 @@ class Legesystem{
 				legemidler.leggTil(nyVanlig);
 				return;
 			}
-			else if (!valg.equals("4")) { 
-				System.out.println("Ugylidg input!");
-				continue;
+			System.out.println("\nUgylidg input!");
 			}
-		}
 		System.out.println("\n__Tilbake__"); 
 		return;
 	}
@@ -341,10 +330,7 @@ class Legesystem{
 				Lege nyLege = new Lege(navn);
 				leger.leggTil(nyLege);
 			}
-			else if (!valg.equals("3")){
-				System.out.println("\nUgyldig input!");
-				continue;
-			}
+			System.out.println("\nUgyldig input!");
 		}
 		System.out.println("\n__Tilbake__"); 
 		return;
@@ -500,32 +486,30 @@ class Legesystem{
 
             valg = sc.next();
 
-            if (valg.equals("1")) {         // Totalt antall resepter paa vanedannende legemidler
-            
+			// Totalt vanedannende
+            if (valg.equals("1")) {
                 int teller = 0;
                 for (Resept resept : resepter) {
                     if (resept.hentLegemiddel() instanceof Vanedannende) {
                         teller += 1;
                     }
                 }
-
                 System.out.println("\nTotalt antall resepter paa vanedannende legemidler: " + teller);
 
-            } else if (valg.equals("2")) {  // Totalt antall resepter paa narkotiske legemidler
-            
+			// Totalt narkotiske
+            } else if (valg.equals("2")) {
                 int teller = 0;
                 for (Resept resept : resepter) {
                     if (resept.hentLegemiddel() instanceof Narkotisk) {
                         teller += 1;
                     }
                 }
-
                 System.out.println("\nTotalt antall resepter paa narkotiske legemidler: " + teller);
 
-            } else if (valg.equals("3")) {  // Navn paa leger som har skrevet ut minst en resept paa narkotisk + antall slike resepter per lege
-
+            }
+			// leger som har skrevet ut minst en resept paa narkotisk
+			else if (valg.equals("3")) {
                 System.out.println("\nFoelgende leger har skrevet ut minst en resept paa narkotiske legemidler:\n");
-
                 for (Lege lege : leger) {
                     int teller = 0;
                     if (!(lege instanceof Spesialist)) {
@@ -539,17 +523,14 @@ class Legesystem{
                     if (teller == 0) {
                         continue;
                     }
-
                     System.out.println("Navn:\t\t\t\t\t" + lege.hentNavn() + "\nAntall utskrevne narkotiske resepter:\t" + teller);
                 }
-                
-            } else if (valg.equals("4")) {  // Navn paa alle pasienter som har minst en gyldig resept paa narkotisk + antallet per pasient
-
+            }
+			// pasienter som har minst en gyldig resept paa narkotisk
+			else if (valg.equals("4")) {
                 System.out.println("\nFoelgende pasienter har minst en gyldig resept paa narkotiske legemidler:\n");
-
                 for (Pasient pasient : pasienter) {
                     int teller = 0;
-
                     for (Resept resept : pasient.hentResepter()) {
                         if (resept.hentLegemiddel() instanceof Narkotisk) {
                             teller += 1;
@@ -558,13 +539,10 @@ class Legesystem{
                     if (teller == 0) {
                         continue;
                     }
-
                     System.out.println("Navn:\t\t\t\t\t" + pasient.hentNavn() + "\nAntall utskrevne narkotiske resepter:\t" + teller);
                 }
-
-            } else {
-                System.out.println("Skriv et tall 1-5");
             }
+			System.out.println("\nUgyldig input!");
         }
     }
 
