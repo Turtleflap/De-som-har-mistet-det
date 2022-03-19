@@ -147,7 +147,7 @@ class Legesystem{
 				continue;
 			}
 			else if (valg.equals("4")){
-				//seStatestikk(sc);
+				seStatestikk(sc);
 				continue;
 			}
 			else if (valg.equals("5")){
@@ -486,9 +486,87 @@ class Legesystem{
 	// 	}
 	// }
 
-	public static void statistikk(Scanner sc){
-		
-	}
+	public static void seStatestikk(Scanner sc){
+		String valg = "";
+
+        while (!valg.equals("5")) {
+
+        System.out.println("\nHvilken statistikk vil du se?\n" +
+        "1: Totalt antall resepter paa vanedannende legemidler\n" +
+        "2: Totalt antall resepter paa narkotiske legemidler\n" +
+        "3: Navn paa alle leger som har skrevet ut minst en resept paa narkotiske legemidler\n" +
+        "4: Navn paa alle pasienter som har minst en gyldig resept paa narkotiske legemidler\n" +
+        "5: Tilbake");
+
+            valg = sc.next();
+
+            if (valg.equals("1")) {         // Totalt antall resepter paa vanedannende legemidler
+            
+                int teller = 0;
+                for (Resept resept : resepter) {
+                    if (resept.hentLegemiddel() instanceof Vanedannende) {
+                        teller += 1;
+                    }
+                }
+
+                System.out.println("\nTotalt antall resepter paa vanedannende legemidler: " + teller);
+
+            } else if (valg.equals("2")) {  // Totalt antall resepter paa narkotiske legemidler
+            
+                int teller = 0;
+                for (Resept resept : resepter) {
+                    if (resept.hentLegemiddel() instanceof Narkotisk) {
+                        teller += 1;
+                    }
+                }
+
+                System.out.println("\nTotalt antall resepter paa narkotiske legemidler: " + teller);
+
+            } else if (valg.equals("3")) {  // Navn paa leger som har skrevet ut minst en resept paa narkotisk + antall slike resepter per lege
+
+                System.out.println("\nFoelgende leger har skrevet ut minst en resept paa narkotiske legemidler:\n");
+
+                for (Lege lege : leger) {
+                    int teller = 0;
+                    if (!(lege instanceof Spesialist)) {
+                        continue;
+                    }
+                    for (Resept resept : lege.hentResepter()) {
+                        if (resept.hentLegemiddel() instanceof Narkotisk) {
+                            teller += 1;
+                        }
+                    }
+                    if (teller == 0) {
+                        continue;
+                    }
+
+                    System.out.println("Navn:\t\t\t\t\t" + lege.hentNavn() + "\nAntall utskrevne narkotiske resepter:\t" + teller);
+                }
+                
+            } else if (valg.equals("4")) {  // Navn paa alle pasienter som har minst en gyldig resept paa narkotisk + antallet per pasient
+
+                System.out.println("\nFoelgende pasienter har minst en gyldig resept paa narkotiske legemidler:\n");
+
+                for (Pasient pasient : pasienter) {
+                    int teller = 0;
+
+                    for (Resept resept : pasient.hentResepter()) {
+                        if (resept.hentLegemiddel() instanceof Narkotisk) {
+                            teller += 1;
+                        }
+                    }
+                    if (teller == 0) {
+                        continue;
+                    }
+
+                    System.out.println("Navn:\t\t\t\t\t" + pasient.hentNavn() + "\nAntall utskrevne narkotiske resepter:\t" + teller);
+                }
+
+            } else {
+                System.out.println("Skriv et tall 1-5");
+            }
+        }
+    }
 
 	public static void skrivTilFil(String filnavn) {
 		// sTom er en tom streng som bygges opp av hvilket legemiddel som skal legges til
