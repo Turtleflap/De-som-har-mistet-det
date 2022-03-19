@@ -8,8 +8,11 @@ public class Narkotisk extends Legemiddel{
     public int hentNarkotiskStyrke() {
         return styrke;
     }
+    public String hentType(){
+        return "Narkotisk";
+    }
     @Override
     public String toString(){
-        return super.toString() + ", Narkotisk styrke: " + styrke;
+        return super.hentNavn() + ", Narkotisk" + ", Pris: " + super.hentPris() + ", Virkestoff: " + super.hentVirkestoff() + "mg, ID: " + super.hentId() + ", Narkotisk styrke: " + styrke;
     }
 }

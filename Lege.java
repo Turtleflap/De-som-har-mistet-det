@@ -10,6 +10,10 @@ public class Lege implements Comparable<Lege> {
     public String hentNavn() {
         return navn;
     }
+    
+    public String hentType() {
+        return "Lege";
+    }
 
     public IndeksertListe<Resept> hentResepter() {
         return utskrevneResepter;
@@ -52,7 +56,7 @@ public class Lege implements Comparable<Lege> {
     }
 
     public BlaaResept skrivBlaaResept (Legemiddel legemiddel, Pasient pasient, int reit) throws UlovligUtskrift {
-        if (legemiddel instanceof Narkotisk && !(this instanceof Spesialist)) {
+        if ((legemiddel instanceof Narkotisk) && !(this instanceof Spesialist)){
             // hvis ikke et objekt av Spesialist
             throw new UlovligUtskrift(this, legemiddel);
         }

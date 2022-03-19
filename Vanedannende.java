@@ -8,8 +8,11 @@ public class Vanedannende extends Legemiddel{
     public int hentVanedannendeStyrke() {
         return styrke;
     }
+    public String hentType(){
+        return "Vanedannende";
+    }
     @Override
     public String toString(){
-        return super.toString() + ", Vanedannende styrke: " + styrke;
+        return super.hentNavn() + ", Vanedannende" + ", Pris: " + super.hentPris() + ", Virkestoff: " + super.hentVirkestoff() + "mg, ID: " + super.hentId() + ", Vanedannende styrke: " + styrke;
     }
 }

@@ -15,7 +15,7 @@ public class testLege {
 
         // pasienter
         Pasient pasient = new Pasient("Karl", "12345612345");
-        Pasient pasient2 = new Pasient("Karl2", "12345612345");
+        //Pasient pasient2 = new Pasient("Karl2", "12345612345");
 
 
         //tester comparable
@@ -40,7 +40,7 @@ public class testLege {
         spesialist.skrivBlaaResept(narkotisk, pasient, 3);
         lege.skrivBlaaResept(vanlig, pasient, 3);
         lege.skrivMilResept(vanedannende, pasient);
-        lege2.skrivBlaaResept(vanedannende, pasient, 3);
+        lege2.skrivBlaaResept(vanlig, pasient, 3);
         lege2.skrivMilResept(vanedannende, pasient);
         System.out.println("\nHenter pasient og resepter");
         System.out.println(pasient);

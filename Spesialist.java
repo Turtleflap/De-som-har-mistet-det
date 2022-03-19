@@ -10,6 +10,10 @@ public class Spesialist extends Lege implements Godkjenningsfritak {
         return kontrollId;
     }
     @Override
+    public String hentType(){
+        return "Spesialist";
+    }
+    @Override
     public String toString() {
         return "Lege: " + super.hentNavn() + " (Spesialist), kontrollID: " + kontrollId + "\n" + super.hentResepter();
     }
