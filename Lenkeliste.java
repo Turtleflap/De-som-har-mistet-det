@@ -72,12 +72,7 @@ class Lenkeliste<T> implements Liste<T>{
         Node tmp = forste;
 
         while(tmp != null){
-            if(tmp.neste != null){
-                string += tmp.x;
-            }
-            else{
-                string += tmp.x;
-            }
+            string += tmp.x;
             tmp = tmp.neste;
         }
         return string;
