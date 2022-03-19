@@ -134,7 +134,6 @@ class Legesystem{
 
 		while (!valg.equals("6")){
 			System.out.println(meny);
-
 			valg = sc.nextLine();
 			if (valg.equals("1")){
 				seFullstendigOversikt(); //denne går tilbke til hovedmeny
