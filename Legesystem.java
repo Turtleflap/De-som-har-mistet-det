@@ -162,7 +162,7 @@ class Legesystem{
 		}
 		System.out.println("\n__Legemidler__\n");
 		for(Legemiddel legemiddel : legemidler){
-			System.out.println(legemiddel);
+			System.out.println(legemiddel.hentType() + ": " + legemiddel);
 		}
 		System.out.println("\n__Leger__\n");
 		for(Lege lege : leger){
