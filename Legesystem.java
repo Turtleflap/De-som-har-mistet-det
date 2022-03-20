@@ -159,11 +159,22 @@ class Legesystem{
 	private static void seFullstendigOversikt() {
 		System.out.println("__Alle elementer i systemet__");
 		System.out.println("\n__Pasienter__\n");
+		String tabellPasient = "| %-4d | %-30s | %-13s |%n";
+
+		System.out.format("+------+--------------------------------+---------------+%n");
+		System.out.format("| ID   | Navn                           | Fodselsnummer |%n");
+		System.out.format("+------+--------------------------------+---------------+%n");
+		for(Pasient pasient : pasienter){
+			System.out.format(tabellPasient, pasient.hentID(), pasient.hentNavn(), pasient.hentFodselsnummer());
+			System.out.format("+------+--------------------------------+---------------+%n");
+		}
+		//////////////////////////////////////////////////////////////////
 		for(Pasient pasient : pasienter){
 			System.out.println(pasient.hentNavn());
 		}
+		//////////////////////////////////////////////////////////////////
 		System.out.println("\n__Legemidler__\n");
-		String leftAlignFormat = "| %-12s | %-4d | %-20s | %-6d | %-10s | %-8s |%n";
+		String tabellLegemiddel = "| %-12s | %-4d | %-20s | %-6d | %-10s | %-8s |%n";
 
 		System.out.format("+--------------+------+----------------------+--------+------------+----------+%n");
 		System.out.format("| Type         | ID   | Navn                 | Pris   | Virkestoff | Styrke   |%n");
@@ -182,20 +193,66 @@ class Legesystem{
 			if(styrke != 0){
 				str = styrke+"";
 			}
-   	 		System.out.format(leftAlignFormat, legemiddel.hentType() , legemiddel.hentId(), legemiddel.hentNavn(), legemiddel.hentPris(), legemiddel.hentVirkestoff(), str);
+   	 		System.out.format(tabellLegemiddel, legemiddel.hentType() , legemiddel.hentId(), legemiddel.hentNavn(), legemiddel.hentPris(), legemiddel.hentVirkestoff(), str);
 			System.out.format("+--------------+------+----------------------+--------+------------+----------+%n");
 		}
+		///////////////////////////////////////////////////////////
 		for(Legemiddel legemiddel : legemidler){
 			System.out.println(legemiddel.hentType() + ": " + legemiddel);
 		}
+		///////////////////////////////////////////////////////////
 		System.out.println("\n__Leger__\n");
+		String tabellLege = "| %-30s | %-10s |%n";
+
+		System.out.format("+--------------------------------+------------+%n");
+		System.out.format("| Navn                           | Type       |%n");
+		System.out.format("+--------------------------------+------------+%n");
+		for(Lege lege : leger){
+			System.out.format(tabellLege, lege.hentNavn(), lege.hentType().toLowerCase());
+			System.out.format("+--------------------------------+------------+%n");
+		}
+		//////////////////////////////////////////////////////////////////
 		for(Lege lege : leger){
 			System.out.println(lege.hentType() + ": " + lege.hentNavn());
 		}
+		//////////////////////////////////////////////////////////////////
 		System.out.println("\n__Resepter__\n");
+		String tabellResept = "| %-4d | %-20s | %-6d | %-5s | %-5s |%n";
+
+		System.out.format("+------+----------------------+--------+-------+-------+%n");
+		System.out.format("| ID   | Legemiddel           | Pris   | Reit  | Farge |%n");
+		System.out.format("+------+----------------------+--------+-------+-------+%n");
+		for(Resept resept : resepter){
+			String farge = "";
+			int pris = 0;
+			if(resept instanceof BlaaResept){
+				BlaaResept blaa = (BlaaResept)resept;
+				pris = blaa.prisAaBetale();
+				farge = "blaa";
+			}
+			else if(resept instanceof HvitResept){
+				HvitResept hvit = (HvitResept)resept;
+				pris = hvit.prisAaBetale();
+				farge = "hvit";
+			}
+			else if(resept instanceof Militaerresept){
+				Militaerresept mil = (Militaerresept)resept;
+				pris = mil.prisAaBetale();
+				farge = "hvit";
+			}
+			else{
+				PResept pr = (PResept)resept;
+				pris = pr.prisAaBetale();
+				farge = "hvit";
+			}
+			System.out.format(tabellResept, resept.hentId(), resept.hentLegemiddel().hentNavn(), pris, resept.hentReit(), farge);
+			System.out.format("+------+----------------------+--------+-------+-------+%n");
+		}
+		//////////////////////////////////////////////////////////////////
 		for(Resept resept : resepter){
 			System.out.println(resept);
 		}
+		//////////////////////////////////////////////////////////////////
 	}
 	//E4
 	public static void leggTilISystem(Scanner sc) throws UlovligUtskrift{ //legge til nye elementer i Legesystemet
