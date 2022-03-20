@@ -4,7 +4,7 @@ public class Pasient {
     private String navn;
     private String fodselsnummer;
     private int ID;
-    protected Lenkeliste<Resept> resepter;
+    protected IndeksertListe<Resept> resepter;
     // Må være static fordi det er felles for alle objekter
     static int ID_teller = 1;
 
@@ -12,7 +12,7 @@ public class Pasient {
         this.navn = navn;
         this.fodselsnummer = fodselsnummer;
         // oppretter Lenkeliste indeks
-        resepter = new Lenkeliste<>();
+        resepter = new IndeksertListe<>();
         // setter ID lik ID_teller og øker med 1
         ID = ID_teller;
         ID_teller++;
@@ -22,7 +22,7 @@ public class Pasient {
         resepter.leggTil(resept);
     }
 
-    public Lenkeliste<Resept> hentResepter() {
+    public IndeksertListe<Resept> hentResepter() {
         return resepter;
     }
 

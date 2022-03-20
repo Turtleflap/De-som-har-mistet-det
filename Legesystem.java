@@ -71,7 +71,6 @@ class Legesystem{
 						break;
 					}
 					String[] filen = innlest.trim().split(",");
-
 					if (filen[1].equals("0")){
 						Lege nyLege = new Lege(filen[0]);
 						leger.leggTil(nyLege);
@@ -429,19 +428,50 @@ class Legesystem{
 	}
 	public static void brukResept(Scanner sc){
 		//velg pasient
-		int pasientId;
+		int pasientId = 0;
+		int reseptId = 0;
 		String listePasienter = "\nHvilken pasient vil du se resepter for?";
 		
 		System.out.println("__Bruk en resept__");
 		for(Pasient pasient : pasienter){
-			listePasienter = listePasienter + "\n" +pasient.hentID() + ": " + pasient.hentNavn();
+			listePasienter = listePasienter + "\n" + pasient.hentID() + ": " 
+			+ pasient.hentNavn() + " (fnr " + pasient.hentFodselsnummer() + ")";
 		}
 		System.out.println(listePasienter);
-		pasientId = sc.nextInt();
-		Pasient pasienten = pasienter.hent(pasientId);
-		System.out.println(pasienten.hentResepter());
+		while(pasientId < 1 || pasientId > pasienter.stoerrelse()){
+			System.out.println("velg en av pasientene: ");
+			pasientId = sc.nextInt();
+		}
+
+		Pasient pasienten = pasienter.hent(pasientId - 1);
+		Resept resepten = null;
+		if(pasienten.hentResepter().stoerrelse() == 0){
+			System.out.println("\nDenne pasienten har ingen resepter");
+			return;
+		}
+
+		System.out.println("\nValgt pasient: " + pasienten.hentNavn() + " (fnr " 
+		+ pasienten.hentFodselsnummer() + ")");
+		for(int i = 0; i < pasienten.hentResepter().stoerrelse(); i++){
+			resepten = pasienten.hentResepter().hent(i);
+			System.out.println((i + 1) + ": " + resepten.hentLegemiddel().hentNavn() 
+			+ " (" + resepten.hentReit() + " reit)");
+		}
+		while(reseptId < 1 || reseptId > pasienten.hentResepter().stoerrelse()){
+			System.out.println("Hvilken resept vil du bruke?");
+			reseptId = sc.nextInt();
+		}
+		resepten = pasienten.hentResepter().hent(reseptId - 1);
+		if(resepten.bruk() == true){
+			System.out.println("Brukte resept paa " + resepten.hentLegemiddel().hentNavn() 
+			+ ". Antall gjenværende reit: " + resepten.hentReit());
+		}
+		else{
+			System.out.println("Kunne ikke bruke resept paa " + resepten.hentLegemiddel().hentNavn() 
+			+ " (ingen gjennvaerende reit).");
+		}
+		//System.out.println(pasienten.hentResepter());
 		//velg resept
-		String listeResepter = "\nHvilken resept vil du bruke?";
 		
 		//tilbake til hovedmeny
 	}

@@ -26,19 +26,19 @@ public class Lege implements Comparable<Lege> {
         if (legemiddel instanceof Narkotisk) {
             // this er objektet av Lege
                 throw new UlovligUtskrift(this, legemiddel);
-            }
-            HvitResept hvitResept = new HvitResept(legemiddel, this, pasient, reit);
-            // legger til utskrevneResepter
-            utskrevneResepter.leggTil(hvitResept);
-            pasient.leggTilResept(hvitResept);
-            // returnerer
-            return hvitResept;
+        }
+        HvitResept hvitResept = new HvitResept(legemiddel, this, pasient, reit);
+        // legger til utskrevneResepter
+        utskrevneResepter.leggTil(hvitResept);
+        pasient.leggTilResept(hvitResept);
+        // returnerer
+        return hvitResept;
     }
 
     public Militaerresept skrivMilResept (Legemiddel legemiddel, Pasient pasient) throws UlovligUtskrift {
         if (legemiddel instanceof Narkotisk) {
                 throw new UlovligUtskrift(this, legemiddel);
-            }
+        }
         Militaerresept militaerresept = new Militaerresept(legemiddel, this, pasient);
         utskrevneResepter.leggTil(militaerresept);
         pasient.leggTilResept(militaerresept);
