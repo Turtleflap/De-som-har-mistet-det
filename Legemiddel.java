@@ -30,6 +30,6 @@ public abstract class Legemiddel {
     abstract public String hentType();
 
     public String toString(){
-        return "Legemiddel: " + navn + ", Pris: " + pris + ", Virkestoff: " + virkestoff + "mg, ID: " + ID;
+        return navn + ", Pris: " + pris + ", Virkestoff: " + virkestoff + "mg, ID: " + ID;
     }
 }
