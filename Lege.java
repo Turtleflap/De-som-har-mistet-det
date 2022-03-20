@@ -68,7 +68,7 @@ public class Lege implements Comparable<Lege> {
 
     @Override
     public String toString() {
-        return "Lege: " + navn + "\n" + utskrevneResepter;
+        return "Lege: " + navn + "\n" + utskrevneResepter + "\n";
     }
     @Override
     // returner en int
