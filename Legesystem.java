@@ -67,12 +67,10 @@ class Legesystem{
 				while (sc.hasNextLine()){
                     innlest = sc.nextLine();
                     if(innlest.contains("#")){
-                        System.out.println("break");
                         type++;
 						break;
 					}
 					String[] filen = innlest.trim().split(",");
-                    System.out.println("la til lege");
 
 					if (filen[1].equals("0")){
 						Lege nyLege = new Lege(filen[0]);
@@ -208,7 +206,6 @@ class Legesystem{
 		System.out.println("\n__Tilbake til Hovedmeny__");
 		return;
 	}
-
 	public static void leggTilPasient(Scanner sc){
 		String navn;
 		String fnr;
@@ -407,13 +404,15 @@ class Legesystem{
 			}
 			valg = sc.nextLine();
 		}
-		System.out.println("\nvelg et antall for reit");
-		reit = sc.nextInt();
 		if(valg.equals("1")){
+			System.out.println("\nvelg et antall for reit");
+			reit = sc.nextInt();
 			BlaaResept blaa = utskriftslege.skrivBlaaResept(legemiddelet, pasienten, reit);
 			resepter.leggTil(blaa);
 		}
 		else if(valg.equals("2")){
+			System.out.println("\nvelg et antall for reit");
+			reit = sc.nextInt();
 			HvitResept hvit = utskriftslege.skrivHvitResept(legemiddelet, pasienten, reit);
 			resepter.leggTil(hvit);
 		}
@@ -422,6 +421,8 @@ class Legesystem{
 			resepter.leggTil(militaer);
 		}
 		else{
+			System.out.println("\nvelg et antall for reit");
+			reit = sc.nextInt();
 			PResept p = utskriftslege.skrivPResept(legemiddelet, pasienten, reit);
 			resepter.leggTil(p);
 		}
@@ -490,7 +491,7 @@ class Legesystem{
                 int teller = 0;
                 for (Resept resept : resepter) {
                     if (resept.hentLegemiddel() instanceof Vanedannende) {
-                        teller += 1;
+                        teller ++;
                     }
                 }
                 System.out.println("\nTotalt antall resepter paa vanedannende legemidler: " + teller);
@@ -500,7 +501,7 @@ class Legesystem{
                 int teller = 0;
                 for (Resept resept : resepter) {
                     if (resept.hentLegemiddel() instanceof Narkotisk) {
-                        teller += 1;
+                        teller ++;
                     }
                 }
                 System.out.println("\nTotalt antall resepter paa narkotiske legemidler: " + teller);
@@ -516,7 +517,7 @@ class Legesystem{
                     }
                     for (Resept resept : lege.hentResepter()) {
                         if (resept.hentLegemiddel() instanceof Narkotisk) {
-                            teller += 1;
+                            teller ++;
                         }
                     }
                     if (teller == 0) {
@@ -532,7 +533,7 @@ class Legesystem{
                     int teller = 0;
                     for (Resept resept : pasient.hentResepter()) {
                         if (resept.hentLegemiddel() instanceof Narkotisk) {
-                            teller += 1;
+                            teller ++;
                         }
                     }
                     if (teller == 0) {
