@@ -137,6 +137,7 @@ class Legesystem{
 			}
 			else if (valg.equals("2")){
                 leggTilISystem(sc);
+				continue;
 			}
 			else if (valg.equals("3")){
 				brukResept(sc);
@@ -162,6 +163,28 @@ class Legesystem{
 			System.out.println(pasient.hentNavn());
 		}
 		System.out.println("\n__Legemidler__\n");
+		String leftAlignFormat = "| %-12s | %-4d | %-20s | %-6d | %-10s | %-8s |%n";
+
+		System.out.format("+--------------+------+----------------------+--------+------------+----------+%n");
+		System.out.format("| Type         | ID   | Navn                 | Pris   | Virkestoff | Styrke   |%n");
+		System.out.format("+--------------+------+----------------------+--------+------------+----------+%n");
+		for (Legemiddel legemiddel : legemidler) {
+			double styrke = 0;
+			String str = "ingen";
+			if(legemiddel instanceof Vanedannende){
+				Vanedannende vanedannedne = (Vanedannende)legemiddel;
+				styrke = vanedannedne.hentVanedannendeStyrke();
+			}
+			else if(legemiddel instanceof Narkotisk){
+				Narkotisk narkotisk = (Narkotisk)legemiddel;
+				styrke = narkotisk.hentNarkotiskStyrke();
+			}
+			if(styrke != 0){
+				str = styrke+"";
+			}
+   	 		System.out.format(leftAlignFormat, legemiddel.hentType() , legemiddel.hentId(), legemiddel.hentNavn(), legemiddel.hentPris(), legemiddel.hentVirkestoff(), str);
+			System.out.format("+--------------+------+----------------------+--------+------------+----------+%n");
+		}
 		for(Legemiddel legemiddel : legemidler){
 			System.out.println(legemiddel.hentType() + ": " + legemiddel);
 		}
@@ -202,10 +225,11 @@ class Legesystem{
 			else if (valg.equals("4")){
 				leggTilResept(sc);
 			}
-			System.out.println("\nUgyldig input!");
+			else{
+				System.out.println("\nUgyldig input!");
+			}
 		}
 		System.out.println("\n__Tilbake til Hovedmeny__");
-		return;
 	}
 	public static void leggTilPasient(Scanner sc){
 		String navn;
