@@ -147,7 +147,9 @@ class Legesystem{
 			else if (valg.equals("5")){
 				skrivTilFil("test.txt");
 			}
-			System.out.println("\nUgyldig input!");
+			else{
+				System.out.println("\nUgyldig input!");
+			}
 		}
 		sc.close();
 		System.out.println("__Programmet er avsluttet__");
