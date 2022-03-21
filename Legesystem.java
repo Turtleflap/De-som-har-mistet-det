@@ -38,7 +38,7 @@ class Legesystem{
 					pasienter.leggTil(nyPasient);
 				}
 			}
-	
+			// oppretter objekter og legger til i riktig liste		
 			if (type == 1){
 				while (sc.hasNextLine()){
                     innlest = sc.nextLine();
@@ -423,6 +423,8 @@ class Legesystem{
 		int legemiddelId = 0;
 		int pasientId;
 		int reit;
+		int spesialistId = 0;
+		int teller = 0;
 		String valg;
 		Legemiddel legemiddelet = null;
 		Lege utskriftslege = null;
@@ -440,34 +442,49 @@ class Legesystem{
 		legemiddelet = legemidler.hent(legemiddelId - 1);
 		System.out.println(legemiddelet.hentNavn());
 
-		// lege
-		System.out.println("\nVelg en lege:\n");
-		int teller = 0;
-		for (Lege lege : leger) {
-			System.out.println("Hallo");
-			teller++;
-			System.out.println(teller + ": " + lege.hentNavn() + "(" + lege.hentType() + ")");
-		}
-		while(legeId < 1 || legeId > leger.stoerrelse()){
-			if(legemiddelet.hentType().equals("Narkotisk")){
-				System.out.println("Velg en av legene (du valgte narkotisk, saa velg en spesialist): ");
+		//lege
+		if (legemiddelet instanceof Narkotisk) {
+			System.out.println("\nDu valgte narkotisk, saa velg en spesialist:\n");
+			for (Lege lege : leger) {
+				teller ++;
+				if (lege instanceof Spesialist) {
+					//Spesialist spesialist = (Spesialist)lege;
+					System.out.println(teller + ": " + lege.hentNavn());
+				}
 			}
-			else{
-				System.out.println("Velg en av legene: ");
+			while (spesialistId < 1 || spesialistId > leger.stoerrelse() || !(leger.hent(spesialistId - 1) instanceof Spesialist)) {
+				spesialistId = sc.nextInt();
+				System.out.println("Skriv inn IDen til en av spesialistene over");
 			}
-			legeId = sc.nextInt();
+			utskriftslege = leger.hent(spesialistId - 1);
+			System.out.println(utskriftslege.hentNavn());
+		}	
+		else {
+			System.out.println("\nVelg en lege:\n");
+			teller = 0;
+			for(Lege lege : leger){
+				teller++;
+				System.out.println(teller + ": " + lege.hentNavn() + "(" + lege.hentType() + ")");
+			}
+			while (legeId < 1 || legeId > leger.stoerrelse()) {
+				if (legemiddelet.hentType().equals("Narkotisk")) {
+					System.out.println("Velg en av legene (du valgte narkotisk, saa velg en spesialist): ");
+				}
+				else {
+					System.out.println("Velg en av legene: ");
+				}
+				legeId = sc.nextInt();
+			}
+			utskriftslege = leger.hent(legeId - 1);
+			System.out.println(utskriftslege.hentNavn());
 		}
-		utskriftslege = leger.hent(legeId - 1);
-		System.out.println(utskriftslege.hentNavn());
 		
 		// pasient
 		System.out.println("\nVelg en pasient:\n");
-		teller = 0;
 		for (Pasient pasient : pasienter) {
 			System.out.println(pasient.hentID() + ": " + pasient.hentNavn());
 		}
 		pasientId = sc.nextInt();
-		teller = 0;
 		while (pasientId < 1 || pasientId > pasienter.stoerrelse()) {
 			System.out.println("Velg en pasient");
 			pasientId = sc.nextInt();
@@ -475,46 +492,55 @@ class Legesystem{
 		pasienten = pasienter.hent(pasientId - 1);
 		System.out.println(pasienten.hentNavn());
 		
-		// resept type
-		System.out.println("\nVelg en respt:\n");
-		String typerResept = "\n Hvilken type har resept?"
-		+"\n1: blaa"
-		+"\n2: hvit"
-		+"\n3: militaer"
-		+"\n4: p-resept";
-		System.out.println(typerResept);
-		valg = sc.nextLine();
-		while (!(valg.equals("1") || valg.equals("2") || valg.equals("3") || valg.equals("4"))){
-			if (legemiddelet.hentType().equals("Narkotisk")) {
-				System.out.println("Du har valgt narkotisk, saa velg blaa resept:");
+		//Resept type
+		if (legemiddelet instanceof Narkotisk) {
+			System.out.println("\nDu valgte narkotisk, så da ble resepten blaa\n");
+			System.out.println("velg et antall for reit");
+				reit = sc.nextInt();
+				BlaaResept blaa = utskriftslege.skrivBlaaResept(legemiddelet, pasienten, reit);
+				resepter.leggTil(blaa);
+		}
+		else{
+			System.out.println("\nVelg en respt:\n");
+			String typerResept = "\n Hvilken type har resept?"
+			+"\n1: blaa"
+			+"\n2: hvit"
+			+"\n3: militaer"
+			+"\n4: p-resept";
+			System.out.println(typerResept);
+			valg = sc.nextLine();
+			while (!(valg.equals("1") || valg.equals("2") || valg.equals("3") || valg.equals("4"))){
+				if (legemiddelet.hentType().equals("Narkotisk")) {
+					System.out.println("Du har valgt narkotisk, saa velg blaa resept:");
+				}
+				else {
+					System.out.println("Velg en resept:");
+				}
+				valg = sc.nextLine();
+			}
+			if (valg.equals("1")) {
+				System.out.println("\nvelg et antall for reit");
+				reit = sc.nextInt();
+				BlaaResept blaa = utskriftslege.skrivBlaaResept(legemiddelet, pasienten, reit);
+				resepter.leggTil(blaa);
+			}
+			else if (valg.equals("2")) {
+				System.out.println("\nvelg et antall for reit");
+				reit = sc.nextInt();
+				HvitResept hvit = utskriftslege.skrivHvitResept(legemiddelet, pasienten, reit);
+				resepter.leggTil(hvit);
+			}
+			else if (valg.equals("3")) {
+				Militaerresept militaer = utskriftslege.skrivMilResept(legemiddelet, pasienten);
+				resepter.leggTil(militaer);
 			}
 			else {
-				System.out.println("Velg en resept:");
+				System.out.println("\nvelg et antall for reit");
+				reit = sc.nextInt();
+				PResept p = utskriftslege.skrivPResept(legemiddelet, pasienten, reit);
+				resepter.leggTil(p);
 			}
-			valg = sc.nextLine();
-		}
-		if (valg.equals("1")) {
-			System.out.println("\nvelg et antall for reit");
-			reit = sc.nextInt();
-			BlaaResept blaa = utskriftslege.skrivBlaaResept(legemiddelet, pasienten, reit);
-			resepter.leggTil(blaa);
-		}
-		else if (valg.equals("2")) {
-			System.out.println("\nvelg et antall for reit");
-			reit = sc.nextInt();
-			HvitResept hvit = utskriftslege.skrivHvitResept(legemiddelet, pasienten, reit);
-			resepter.leggTil(hvit);
-		}
-		else if (valg.equals("3")) {
-			Militaerresept militaer = utskriftslege.skrivMilResept(legemiddelet, pasienten);
-			resepter.leggTil(militaer);
-		}
-		else {
-			System.out.println("\nvelg et antall for reit");
-			reit = sc.nextInt();
-			PResept p = utskriftslege.skrivPResept(legemiddelet, pasienten, reit);
-			resepter.leggTil(p);
-		}
+		}	
 	}
 	// E5
 	public static void brukResept(Scanner sc) {
