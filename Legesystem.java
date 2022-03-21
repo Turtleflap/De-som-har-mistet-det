@@ -434,12 +434,10 @@ class Legesystem{
 		}
 		legemiddelet = legemidler.hent(legemiddelId - 1);
 		System.out.println(legemiddelet.hentNavn());
-		
 
 		//lege
 		System.out.println("\nVelg en lege:\n");
 		int teller = 0;
-		System.out.println("Hei");
 		for (Lege lege : leger) {
 			System.out.println("Hallo");
 			teller++;
