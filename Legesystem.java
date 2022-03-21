@@ -148,7 +148,7 @@ class Legesystem{
 			else if (valg.equals("5")){
 				skrivTilFil("test.txt");
 			}
-			else{
+			else if (!valg.equals("6")){
 				System.out.println("\nUgyldig input!");
 			}
 		}
