@@ -494,7 +494,7 @@ class Legesystem{
 		
 		//Resept type
 		if (legemiddelet instanceof Narkotisk) {
-			System.out.println("\nDu valgte narkotisk, saa da ble resepten blaa.\n");
+			System.out.println("\nDu valgte narkotisk, saa resepten ble blaa\n");
 			System.out.println("Velg et antall for reit:");
 				reit = sc.nextInt();
 				BlaaResept blaa = utskriftslege.skrivBlaaResept(legemiddelet, pasienten, reit);
