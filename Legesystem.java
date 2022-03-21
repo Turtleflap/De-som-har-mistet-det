@@ -446,6 +446,8 @@ class Legesystem{
 			}
 			String kontrollId;
 			kontrollId = sc.nextLine();
+			utskriftslege = leger.hent(legeId - 1);
+			System.out.println(utskriftslege.hentNavn());
 		}
 		else {
 			System.out.println("\nVelg en lege:\n");
@@ -739,7 +741,6 @@ class Legesystem{
 	}
 
     public static void main(String[] args) throws UlovligUtskrift {
-
         lesFraFil("LegeData.txt");
         // lesFraFil("nyStorFil.txt");
         meny();
