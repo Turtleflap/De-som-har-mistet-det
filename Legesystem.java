@@ -339,7 +339,7 @@ class Legesystem{
 			else if (valg.equals("2")) {
 				System.out.println("Navn: ");
 				navn = sc.nextLine();
-				System.out.println("Pris");
+				System.out.println("Pris:");
 				pris = ((int) Math.round(sc.nextDouble()));
 				System.out.println("Virkestoff: ");
 				virkestoff = 0;
@@ -359,7 +359,7 @@ class Legesystem{
 			else if (valg.equals("3")) {
 				System.out.println("Navn: ");
 				navn = sc.nextLine();
-				System.out.println("Pris");
+				System.out.println("Pris:");
 				pris = ((int) Math.round(sc.nextDouble()));
 				System.out.println("Virkestoff: ");
 				virkestoff = 0;
@@ -431,12 +431,12 @@ class Legesystem{
 		Pasient pasienten = null;
 
 		// legemiddel
-		System.out.println("\nVelg et legemiddel:\n");
+		System.out.println("\nVelg et legemiddel:");
 		for (Legemiddel legemiddel : legemidler) {
 			System.out.println(legemiddel.hentId() + ": " + legemiddel.hentNavn() + "(" +legemiddel.hentType() + ")");
 		}
 		while (legemiddelId < 1 || legemiddelId > legemidler.stoerrelse()) {
-			System.out.println("Velg et legemiddel");
+			System.out.println("Velg et legemiddel:");
 			legemiddelId = sc.nextInt();
 		}
 		legemiddelet = legemidler.hent(legemiddelId - 1);
@@ -444,7 +444,7 @@ class Legesystem{
 
 		//lege
 		if (legemiddelet instanceof Narkotisk) {
-			System.out.println("\nDu valgte narkotisk, saa velg en spesialist:\n");
+			System.out.println("\nDu valgte narkotisk, saa velg en spesialist:");
 			for (Lege lege : leger) {
 				teller ++;
 				if (lege instanceof Spesialist) {
@@ -460,7 +460,7 @@ class Legesystem{
 			System.out.println(utskriftslege.hentNavn());
 		}	
 		else {
-			System.out.println("\nVelg en lege:\n");
+			System.out.println("\nVelg en lege:");
 			teller = 0;
 			for(Lege lege : leger){
 				teller++;
@@ -471,7 +471,7 @@ class Legesystem{
 					System.out.println("Velg en av legene (du valgte narkotisk, saa velg en spesialist): ");
 				}
 				else {
-					System.out.println("Velg en av legene: ");
+					System.out.println("Velg en av legene:");
 				}
 				legeId = sc.nextInt();
 			}
@@ -480,13 +480,13 @@ class Legesystem{
 		}
 		
 		// pasient
-		System.out.println("\nVelg en pasient:\n");
+		System.out.println("\nVelg en pasient:");
 		for (Pasient pasient : pasienter) {
 			System.out.println(pasient.hentID() + ": " + pasient.hentNavn());
 		}
 		pasientId = sc.nextInt();
 		while (pasientId < 1 || pasientId > pasienter.stoerrelse()) {
-			System.out.println("Velg en pasient");
+			System.out.println("Velg en pasient:");
 			pasientId = sc.nextInt();
 		}
 		pasienten = pasienter.hent(pasientId - 1);
@@ -494,16 +494,15 @@ class Legesystem{
 		
 		//Resept type
 		if (legemiddelet instanceof Narkotisk) {
-			System.out.println("\nDu valgte narkotisk, saa resepten ble blaa\n");
+			System.out.println("\nDu valgte narkotisk, saa resepten ble blaa");
 			System.out.println("Velg et antall for reit:");
 				reit = sc.nextInt();
 				BlaaResept blaa = utskriftslege.skrivBlaaResept(legemiddelet, pasienten, reit);
 				resepter.leggTil(blaa);
 		}
 		else{
-			System.out.println("\nVelg en respt:\n");
-			String typerResept = "\nHvilken type har resept?"
-			+"\n1: blaa"
+			System.out.println("\nVelg en resept:");
+			String typerResept = "1: blaa"
 			+"\n2: hvit"
 			+"\n3: militaer"
 			+"\n4: p-resept";
