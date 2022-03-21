@@ -39,7 +39,8 @@ class Legesystem{
 				}
 			}
 	
-				// oppretter objekter og legger til i riktig liste		if (type == 1){
+				// oppretter objekter og legger til i riktig liste		
+			if (type == 1){
 				while (sc.hasNextLine()){
                     innlest = sc.nextLine();
                     if (innlest.contains("#")) {
@@ -118,6 +119,7 @@ class Legesystem{
 				
 			}
 		}
+	}
 	// E2
 	public static void meny() throws UlovligUtskrift {
 		String valg = "";
@@ -418,6 +420,7 @@ class Legesystem{
 		int legemiddelId = 0;
 		int pasientId;
 		int reit;
+		int spesialistId = 0;
 		String valg;
 		Legemiddel legemiddelet = null;
 		Lege utskriftslege = null;
@@ -436,33 +439,47 @@ class Legesystem{
 		System.out.println(legemiddelet.hentNavn());
 
 		//lege
-		System.out.println("\nVelg en lege:\n");
-		int teller = 0;
-		for (Lege lege : leger) {
-			System.out.println("Hallo");
-			teller++;
-			System.out.println(teller + ": " + lege.hentNavn() + "(" + lege.hentType() + ")");
-		}
-		while(legeId < 1 || legeId > leger.stoerrelse()){
-			if(legemiddelet.hentType().equals("Narkotisk")){
-				System.out.println("Velg en av legene (du valgte narkotisk, saa velg en spesialist): ");
+		if (legemiddelet instanceof Narkotisk) {
+			System.out.println("Du valgte narkotisk, saa velg en spesialist etter kontrollId:\n");
+			for (Lege lege : leger) {
+				if (lege instanceof Spesialist) {
+					Spesialist spesialist = (Spesialist)lege;
+					System.out.println(spesialist.hentKontrollId() + ": " + lege.hentNavn());
+				}
 			}
-			else{
-				System.out.println("Velg en av legene: ");
+			while (spesialistId < 1 || spesialistId > leger.stoerrelse() || !(leger.hent(spesialistId - 1) instanceof Spesialist)) {
+				spesialistId = sc.nextInt();
+				utskriftslege = leger.hent(spesialistId - 1);
+				System.out.println(utskriftslege.hentNavn());
 			}
-			legeId = sc.nextInt();
+		}	
+		else {
+			System.out.println("\nVelg en lege:\n");
+			int teller = 0;
+			for(Lege lege : leger){
+				teller++;
+				System.out.println(teller + ": " + lege.hentNavn() + "(" + lege.hentType() + ")");
+			}
+			while (legeId < 1 || legeId > leger.stoerrelse()) {
+				if (legemiddelet.hentType().equals("Narkotisk")) {
+					System.out.println("Velg en av legene (du valgte narkotisk, saa velg en spesialist): ");
+				}
+				else {
+					System.out.println("Velg en av legene: ");
+				}
+				legeId = sc.nextInt();
+			}
+			utskriftslege = leger.hent(legeId - 1);
+			System.out.println(utskriftslege.hentNavn());
 		}
-		utskriftslege = leger.hent(legeId - 1);
-		System.out.println(utskriftslege.hentNavn());
 		
 		//pasient
 		System.out.println("\nVelg en pasient:\n");
-		teller = 0;
 		for (Pasient pasient : pasienter) {
 			System.out.println(pasient.hentID() + ": " + pasient.hentNavn());
 		}
 		pasientId = sc.nextInt();
-		teller = 0;
+		int teller = 0;
 		while (pasientId < 1 || pasientId > pasienter.stoerrelse()) {
 			System.out.println("Velg en pasient");
 			pasientId = sc.nextInt();
