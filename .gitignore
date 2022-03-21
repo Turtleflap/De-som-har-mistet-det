@@ -1,3 +1,9 @@
+# PDF files
+*.pdf
+
+# Docx (Word) files
+*.docx
+
 # Compiled class file
 *.class
 
