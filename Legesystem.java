@@ -494,8 +494,8 @@ class Legesystem{
 		
 		//Resept type
 		if (legemiddelet instanceof Narkotisk) {
-			System.out.println("\nDu valgte narkotisk, saa da ble resepten blaa\n");
-			System.out.println("velg et antall for reit");
+			System.out.println("\nDu valgte narkotisk, saa da ble resepten blaa.\n");
+			System.out.println("Velg et antall for reit:");
 				reit = sc.nextInt();
 				BlaaResept blaa = utskriftslege.skrivBlaaResept(legemiddelet, pasienten, reit);
 				resepter.leggTil(blaa);
@@ -519,13 +519,13 @@ class Legesystem{
 				valg = sc.nextLine();
 			}
 			if (valg.equals("1")) {
-				System.out.println("\nvelg et antall for reit");
+				System.out.println("\nVelg et antall for reit:");
 				reit = sc.nextInt();
 				BlaaResept blaa = utskriftslege.skrivBlaaResept(legemiddelet, pasienten, reit);
 				resepter.leggTil(blaa);
 			}
 			else if (valg.equals("2")) {
-				System.out.println("\nvelg et antall for reit");
+				System.out.println("\nVelg et antall for reit:");
 				reit = sc.nextInt();
 				HvitResept hvit = utskriftslege.skrivHvitResept(legemiddelet, pasienten, reit);
 				resepter.leggTil(hvit);
@@ -535,7 +535,7 @@ class Legesystem{
 				resepter.leggTil(militaer);
 			}
 			else {
-				System.out.println("\nvelg et antall for reit");
+				System.out.println("\nvelg et antall for reit:");
 				reit = sc.nextInt();
 				PResept p = utskriftslege.skrivPResept(legemiddelet, pasienten, reit);
 				resepter.leggTil(p);
@@ -557,7 +557,7 @@ class Legesystem{
 		System.out.println(listePasienter);
 		while (pasientId < 1 || pasientId > pasienter.stoerrelse()) {
 			try {
-				System.out.println("Velg en av pasientene: ");
+				System.out.println("Velg en av pasientene:");
 				pasientId = sc.nextInt();
 			} catch (InputMismatchException e) {
 				System.out.println("\nAksepterer ikke bokstaver!");
