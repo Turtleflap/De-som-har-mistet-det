@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.NumberFormatException;
 import java.io.PrintWriter;
+
 class Legesystem{
 	private static IndeksertListe<Pasient> pasienter = new IndeksertListe<>();
 	private static IndeksertListe<Legemiddel> legemidler = new IndeksertListe<>();
