@@ -168,11 +168,6 @@ class Legesystem{
 			System.out.format(tabellPasient, pasient.hentID(), pasient.hentNavn(), pasient.hentFodselsnummer());
 			System.out.format("+------+--------------------------------+---------------+%n");
 		}
-		//////////////////////////////////////////////////////////////////
-		for(Pasient pasient : pasienter){
-			System.out.println(pasient.hentNavn());
-		}
-		//////////////////////////////////////////////////////////////////
 		System.out.println("\n__Legemidler__\n");
 		String tabellLegemiddel = "| %-12s | %-4d | %-20s | %-6d | %-10s | %-8s |%n";
 
@@ -196,11 +191,6 @@ class Legesystem{
    	 		System.out.format(tabellLegemiddel, legemiddel.hentType() , legemiddel.hentId(), legemiddel.hentNavn(), legemiddel.hentPris(), legemiddel.hentVirkestoff(), str);
 			System.out.format("+--------------+------+----------------------+--------+------------+----------+%n");
 		}
-		///////////////////////////////////////////////////////////
-		for(Legemiddel legemiddel : legemidler){
-			System.out.println(legemiddel.hentType() + ": " + legemiddel);
-		}
-		///////////////////////////////////////////////////////////
 		System.out.println("\n__Leger__\n");
 		String tabellLege = "| %-30s | %-10s |%n";
 
@@ -211,11 +201,6 @@ class Legesystem{
 			System.out.format(tabellLege, lege.hentNavn(), lege.hentType().toLowerCase());
 			System.out.format("+--------------------------------+------------+%n");
 		}
-		//////////////////////////////////////////////////////////////////
-		for(Lege lege : leger){
-			System.out.println(lege.hentType() + ": " + lege.hentNavn());
-		}
-		//////////////////////////////////////////////////////////////////
 		System.out.println("\n__Resepter__\n");
 		String tabellResept = "| %-4d | %-20s | %-6d | %-5s | %-5s |%n";
 
@@ -248,11 +233,6 @@ class Legesystem{
 			System.out.format(tabellResept, resept.hentId(), resept.hentLegemiddel().hentNavn(), pris, resept.hentReit(), farge);
 			System.out.format("+------+----------------------+--------+-------+-------+%n");
 		}
-		//////////////////////////////////////////////////////////////////
-		for(Resept resept : resepter){
-			System.out.println(resept);
-		}
-		//////////////////////////////////////////////////////////////////
 	}
 	//E4
 	public static void leggTilISystem(Scanner sc) throws UlovligUtskrift{ //legge til nye elementer i Legesystemet
