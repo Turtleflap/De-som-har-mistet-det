@@ -368,7 +368,7 @@ class Legesystem{
 				legemidler.leggTil(nyVanlig);
 				return;
 			}
-			System.out.println("\nUgylidg input! LeggTilLegemiddel");
+			System.out.println("\nUgylidg input!");
 			}
 		System.out.println("\n__Tilbake__");
 		return;
@@ -418,7 +418,6 @@ class Legesystem{
 		int legemiddelId = 0;
 		int pasientId;
 		int reit;
-		int spesialistId = 0;
 		String valg;
 		Legemiddel legemiddelet = null;
 		Lege utskriftslege = null;
@@ -438,43 +437,29 @@ class Legesystem{
 		
 
 		//lege
-		if (legemiddelet instanceof Narkotisk) {
-			System.out.println("Du valgte narkotisk, saa velg en spesialist etter kontrollId:\n");
-			for (Lege lege : leger) {
-				if (lege instanceof Spesialist) {
-					Spesialist spesialist = (Spesialist)lege;
-					System.out.println(spesialist.hentKontrollId() + ": " + lege.hentNavn());
-				}
-			}
-			while (spesialistId < 1 || spesialistId > leger.stoerrelse() || !(leger.hent(spesialistId - 1) instanceof Spesialist)) {
-				spesialistId = sc.nextInt();
-				utskriftslege = leger.hent(spesialistId - 1);
-				System.out.println(utskriftslege.hentNavn());
-			}
-		}	
-		else {
-			System.out.println("\nVelg en lege:\n");
-			int teller = 0;
-			for(Lege lege : leger){
-				teller++;
-				System.out.println(teller + ": " + lege.hentNavn() + "(" + lege.hentType() + ")");
-			}
-			while (legeId < 1 || legeId > leger.stoerrelse()) {
-				if (legemiddelet.hentType().equals("Narkotisk")) {
-					System.out.println("Velg en av legene (du valgte narkotisk, saa velg en spesialist): ");
-				}
-				else {
-					System.out.println("Velg en av legene: ");
-				}
-				legeId = sc.nextInt();
-			}
-			utskriftslege = leger.hent(legeId - 1);
-			System.out.println(utskriftslege.hentNavn());
+		System.out.println("\nVelg en lege:\n");
+		int teller = 0;
+		System.out.println("Hei");
+		for (Lege lege : leger) {
+			System.out.println("Hallo");
+			teller++;
+			System.out.println(teller + ": " + lege.hentNavn() + "(" + lege.hentType() + ")");
 		}
+		while(legeId < 1 || legeId > leger.stoerrelse()){
+			if(legemiddelet.hentType().equals("Narkotisk")){
+				System.out.println("Velg en av legene (du valgte narkotisk, saa velg en spesialist): ");
+			}
+			else{
+				System.out.println("Velg en av legene: ");
+			}
+			legeId = sc.nextInt();
+		}
+		utskriftslege = leger.hent(legeId - 1);
+		System.out.println(utskriftslege.hentNavn());
 		
 		//pasient
 		System.out.println("\nVelg en pasient:\n");
-		int teller = 0;
+		teller = 0;
 		for (Pasient pasient : pasienter) {
 			System.out.println(pasient.hentID() + ": " + pasient.hentNavn());
 		}
@@ -580,10 +565,6 @@ class Legesystem{
 			System.out.println("Kunne ikke bruke resept paa " + resepten.hentLegemiddel().hentNavn() 
 			+ " (ingen gjennvaerende reit).");
 		}
-		//System.out.println(pasienten.hentResepter());
-		//velg resept
-		
-		//tilbake til hovedmeny
 	}
 	// E6
 	public static void seStatestikk(Scanner sc) {
