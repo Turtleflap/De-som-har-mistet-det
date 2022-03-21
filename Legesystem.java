@@ -431,7 +431,7 @@ class Legesystem{
 		Pasient pasienten = null;
 
 		// legemiddel
-		System.out.println("\n Velg et legemiddel:\n");
+		System.out.println("\nVelg et legemiddel:\n");
 		for (Legemiddel legemiddel : legemidler) {
 			System.out.println(legemiddel.hentId() + ": " + legemiddel.hentNavn() + "(" +legemiddel.hentType() + ")");
 		}
@@ -502,7 +502,7 @@ class Legesystem{
 		}
 		else{
 			System.out.println("\nVelg en respt:\n");
-			String typerResept = "\n Hvilken type har resept?"
+			String typerResept = "\nHvilken type har resept?"
 			+"\n1: blaa"
 			+"\n2: hvit"
 			+"\n3: militaer"
