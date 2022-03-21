@@ -39,7 +39,7 @@ class Legesystem{
 				}
 			}
 	
-				// oppretter objekter og legger til i riktig liste		if (type == 1){
+			if (type == 1){
 				while (sc.hasNextLine()){
                     innlest = sc.nextLine();
                     if (innlest.contains("#")) {
@@ -115,9 +115,9 @@ class Legesystem{
 					}
 					
 				}
-				
 			}
 		}
+	}
 	// E2
 	public static void meny() throws UlovligUtskrift {
 		String valg = "";
