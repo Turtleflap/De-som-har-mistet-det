@@ -188,7 +188,7 @@ class Legesystem{
 			if (styrke != 0) {
 				str = styrke + "";
 			}
-   	 		System.out.format(tabellLegemiddel, legemiddel.hentType() , legemiddel.hentId(), legemiddel.hentNavn(), legemiddel.hentPris(), legemiddel.hentVirkestoff(), str);
+			System.out.format(tabellLegemiddel, legemiddel.hentType() , legemiddel.hentId(), legemiddel.hentNavn(), legemiddel.hentPris(), legemiddel.hentVirkestoff(), str);
 			System.out.format("+--------------+------+----------------------+--------+------------+----------+%n");
 		}
 		System.out.println("\n__Leger__\n");
