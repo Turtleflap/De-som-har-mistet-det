@@ -51,7 +51,7 @@ class Legesystem{
 					String[] filen = innlest.trim().split(",");                    
 					//navn, type, pris, virkestoff, [styrke]
                     if (filen[1].equals("vanlig")) {
-						// Runder til nærmeste heltall og caster fra double til int
+						// Runder til naermeste heltall og caster fra double til int
                         Vanlig nyttVanlig = new Vanlig(filen[0], ((int) Math.round(Double.parseDouble(filen[2]))), Double.parseDouble(filen[3]));
                         legemidler.leggTil(nyttVanlig);
 					}
@@ -276,7 +276,7 @@ class Legesystem{
 
 		System.out.println("Navn: ");
         input = sc.nextLine();
-		if (input != "" && input.charAt(0) != ' ' ) { //ser om bruker legger inn noe eller legger inn mellomrom førstgir nytt forsøk
+		if (input != "" && input.charAt(0) != ' ' ) { //ser om bruker legger inn noe eller legger inn mellomrom forst. gir nytt forsok
 			navn = input;
 			System.out.println("Fodselsnummer: ");
 			input = sc.nextLine();
@@ -298,11 +298,11 @@ class Legesystem{
 
 		String valg = "";
 		String typerLegemiddel = "\n__Legg til legemiddel__"
-		+"\n Hvilken type har legemiddelet?"
-		+"\n 1: Narkotisk"
-		+"\n 2: Vanedannende"
-		+"\n 3: Vanlig"
-		+"\n 4: Tilbake"
+		+"\nHvilken type har legemiddelet?"
+		+"\n1: Narkotisk"
+		+"\n2: Vanedannende"
+		+"\n3: Vanlig"
+		+"\n4: Tilbake"
 		+"\nSkriv inn et av alternativene:";
 		
 		while (!valg.equals("4")) {
@@ -369,7 +369,7 @@ class Legesystem{
 			}
 			System.out.println("\nUgylidg input! LeggTilLegemiddel");
 			}
-		System.out.println("\n__Tilbake__"); 
+		System.out.println("\n__Tilbake__");
 		return;
 	}
 	public static void leggTilLege(Scanner sc) {
@@ -377,10 +377,10 @@ class Legesystem{
 		String kontrollId;
 
 		String valg = "";
-		String typeLege = "\n Hvilken type lege skal legges inn?"
-		+"\n 1: Spesialist"
-		+"\n 2: Vanlig"
-		+"\n 3: Tilbake"
+		String typeLege = "\nHvilken type lege skal legges inn?"
+		+"\n1: Spesialist"
+		+"\n2: Vanlig"
+		+"\n3: Tilbake"
 		+"\nSkriv inn et av alternativene:";
 
 		while (!valg.equals("3")) {
@@ -417,6 +417,7 @@ class Legesystem{
 		int legemiddelId = 0;
 		int pasientId;
 		int reit;
+		int spesialistId = 0;
 		String valg;
 		Legemiddel legemiddelet = null;
 		Lege utskriftslege = null;
@@ -437,18 +438,19 @@ class Legesystem{
 
 		//lege
 		if (legemiddelet instanceof Narkotisk) {
-			System.out.println("Du valgte narkotisk, så velg en spesialist etter kontrollId:\n");
+			System.out.println("Du valgte narkotisk, saa velg en spesialist etter kontrollId:\n");
 			for (Lege lege : leger) {
 				if (lege instanceof Spesialist) {
 					Spesialist spesialist = (Spesialist)lege;
 					System.out.println(spesialist.hentKontrollId() + ": " + lege.hentNavn());
 				}
 			}
-			String kontrollId;
-			kontrollId = sc.nextLine();
-			utskriftslege = leger.hent(legeId - 1);
-			System.out.println(utskriftslege.hentNavn());
-		}
+			while (spesialistId < 1 || spesialistId > leger.stoerrelse() || !(leger.hent(spesialistId - 1) instanceof Spesialist)) {
+				spesialistId = sc.nextInt();
+				utskriftslege = leger.hent(spesialistId - 1);
+				System.out.println(utskriftslege.hentNavn());
+			}
+		}	
 		else {
 			System.out.println("\nVelg en lege:\n");
 			int teller = 0;
@@ -487,10 +489,10 @@ class Legesystem{
 		//Resept type
 		System.out.println("\nVelg en respt:\n");
 		String typerResept = "\n Hvilken type har resept?"
-		+"\n 1: blaa"
-		+"\n 2: hvit"
-		+"\n 3: militaer"
-		+"\n 4: p-resept";
+		+"\n1: blaa"
+		+"\n2: hvit"
+		+"\n3: militaer"
+		+"\n4: p-resept";
 		System.out.println(typerResept);
 		valg = sc.nextLine();
 		while (!(valg.equals("1") || valg.equals("2") || valg.equals("3") || valg.equals("4"))){
@@ -525,6 +527,7 @@ class Legesystem{
 			resepter.leggTil(p);
 		}
 	}
+	// E5
 	public static void brukResept(Scanner sc) {
 		//velg pasient
 		int pasientId = 0;
@@ -570,7 +573,7 @@ class Legesystem{
 		resepten = pasienten.hentResepter().hent(reseptId - 1);
 		if (resepten.bruk() == true) {
 			System.out.println("Brukte resept paa " + resepten.hentLegemiddel().hentNavn() 
-			+ ". Antall gjenværende reit: " + resepten.hentReit());
+			+ ". Antall gjenvaerende reit: " + resepten.hentReit());
 		}
 		else {
 			System.out.println("Kunne ikke bruke resept paa " + resepten.hentLegemiddel().hentNavn() 
@@ -581,6 +584,7 @@ class Legesystem{
 		
 		//tilbake til hovedmeny
 	}
+	// E6
 	public static void seStatestikk(Scanner sc) {
 		String valg = "";
 
@@ -720,7 +724,7 @@ class Legesystem{
 		}
 		f.println("# Resepter (legemiddelNummer,legeNavn,pasientID,type,[reit])");
 		for (Resept resept : resepter) {
-			// PasientID starter på 1, så må trekke fra 1 på hentID()
+			// PasientID starter paa 1, saa maa trekke fra 1 paa hentID()
 			sTom = resept.hentLegemiddel().hentId() + "," + resept.hentLege().hentNavn() + "," + (resept.hentPasient().hentID()-1);
 			if (resept instanceof BlaaResept) {
 				sTom += ",blaa," + resept.hentReit();

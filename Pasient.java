@@ -5,7 +5,7 @@ public class Pasient {
     private String fodselsnummer;
     private int ID;
     protected IndeksertListe<Resept> resepter;
-    // Må være static fordi det er felles for alle objekter
+    // Maa vaere static fordi det er felles for alle objekter
     static int ID_teller = 1;
 
     public Pasient(String navn, String fodselsnummer) {
@@ -13,7 +13,7 @@ public class Pasient {
         this.fodselsnummer = fodselsnummer;
         // oppretter Lenkeliste indeks
         resepter = new IndeksertListe<>();
-        // setter ID lik ID_teller og øker med 1
+        // setter ID lik ID_teller og oker med 1
         ID = ID_teller;
         ID_teller++;
     }
