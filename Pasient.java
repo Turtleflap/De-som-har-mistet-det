@@ -5,7 +5,7 @@ public class Pasient {
     private String fodselsnummer;
     private int ID;
     protected IndeksertListe<Resept> resepter;
-    // Maa vaere static fordi det er felles for alle objekter
+    // maa vaere static fordi det er felles for alle objekter
     static int ID_teller = 1;
 
     public Pasient(String navn, String fodselsnummer) {

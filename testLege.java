@@ -18,7 +18,7 @@ public class testLege {
         //Pasient pasient2 = new Pasient("Karl2", "12345612345");
 
 
-        //tester comparable
+        // tester comparable
         System.out.println("Tester comparable verdier:");
         System.out.println(lege.compareTo(spesialist));
         System.out.println(spesialist.compareTo(lege));
@@ -33,7 +33,7 @@ public class testLege {
         System.out.println(leger[0]);
         System.out.println(leger[1]);
         System.out.println(leger[2]);
-        //tester skrivResept
+        // tester skrivResept
         System.out.println("\nTester skrivResept:");
         spesialist.skrivHvitResept(vanlig, pasient, 3);
         spesialist.skrivHvitResept(vanedannende, pasient, 3);
