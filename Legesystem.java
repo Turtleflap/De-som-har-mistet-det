@@ -158,7 +158,7 @@ class Legesystem{
 	// E3
 	private static void seFullstendigOversikt() {
 		System.out.println("__Alle elementer i systemet__");
-		System.out.println("\n__Pasienter__\n");
+		System.out.println("\n__Pasienter__");
 		String tabellPasient = "| %-4d | %-30s | %-13s |%n";
 
 		System.out.format("+------+--------------------------------+---------------+%n");
@@ -168,7 +168,7 @@ class Legesystem{
 			System.out.format(tabellPasient, pasient.hentID(), pasient.hentNavn(), pasient.hentFodselsnummer());
 			System.out.format("+------+--------------------------------+---------------+%n");
 		}
-		System.out.println("\n__Legemidler__\n");
+		System.out.println("\n__Legemidler__");
 		String tabellLegemiddel = "| %-12s | %-4d | %-20s | %-6d | %-10s | %-8s |%n";
 
 		System.out.format("+--------------+------+----------------------+--------+------------+----------+%n");
@@ -191,7 +191,7 @@ class Legesystem{
 			System.out.format(tabellLegemiddel, legemiddel.hentType() , legemiddel.hentId(), legemiddel.hentNavn(), legemiddel.hentPris(), legemiddel.hentVirkestoff(), str);
 			System.out.format("+--------------+------+----------------------+--------+------------+----------+%n");
 		}
-		System.out.println("\n__Leger__\n");
+		System.out.println("\n__Leger__");
 		String tabellLege = "| %-10s | %-30s |%n";
 
 		System.out.format("+------------+--------------------------------+%n");
@@ -201,7 +201,7 @@ class Legesystem{
 			System.out.format(tabellLege, lege.hentType().toLowerCase(), lege.hentNavn());
 			System.out.format("+------------+--------------------------------+%n");
 		}
-		System.out.println("\n__Resepter__\n");
+		System.out.println("\n__Resepter__");
 		String tabellResept = "| %-4d | %-20s | %-6d | %-5s | %-5s |%n";
 
 		System.out.format("+------+----------------------+--------+-------+-------+%n");
