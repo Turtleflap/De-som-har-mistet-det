@@ -146,7 +146,7 @@ class Legesystem{
 				seStatestikk(sc);
 			}
 			else if (valg.equals("5")) {
-				skrivTilFil("test.txt");
+				skrivTilFil("skrevetUtData.txt");
 			}
 			else if (!valg.equals("6")) {
 				System.out.println("\nUgyldig input!");
@@ -757,7 +757,6 @@ class Legesystem{
 
     public static void main(String[] args) throws UlovligUtskrift {
         lesFraFil("LegeData.txt");
-        // lesFraFil("nyStorFil.txt");
         meny();
 	}
 }
