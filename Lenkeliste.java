@@ -79,7 +79,7 @@ class Lenkeliste<T> implements Liste<T>{
     }
     @Override
     public Iterator<T> iterator() {
-        // Oppretter og returnerer et nytt LenkeListeIterator-objekt
+        // oppretter og returnerer et nytt LenkeListeIterator-objekt
         return new LenkelisteIterator();
     }
 }
