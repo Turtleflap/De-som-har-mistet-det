@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -120,7 +121,7 @@ class Legesystem{
 	public static void meny() throws UlovligUtskrift{
 		String valg = "";
 		String meny = "\n__Legesystem__"
-		+"\nVelg et alternativ"
+		+"\nVELG ET ALTERNATIV:"
 		+"\n1: Se fullstendig oversikt" 
 		+"\n2: Legge til et nytt element" 
 		+"\n3: Bruk en resept" 
@@ -128,16 +129,14 @@ class Legesystem{
 		+"\n5: Skriv data til fil" 
 		+"\n6: Avslutt programmet";
 		Scanner sc = new Scanner(System.in);
-
 		while (!valg.equals("6")){
 			System.out.println(meny);
 			valg = sc.nextLine();
 			if (valg.equals("1")){
-				seFullstendigOversikt(); //denne går tilbke til hovedmeny
+				seFullstendigOversikt(); //denne gaar tilbke til hovedmeny
 			}
 			else if (valg.equals("2")){
-                leggTilISystem(sc);
-				continue;
+				leggTilISystem(sc);
 			}
 			else if (valg.equals("3")){
 				brukResept(sc);
@@ -148,8 +147,11 @@ class Legesystem{
 			else if (valg.equals("5")){
 				skrivTilFil("test.txt");
 			}
-			else{
+			else if (!valg.equals("6")){
 				System.out.println("\nUgyldig input!");
+			}
+			else{
+				sc.close();
 			}
 		}
 		sc.close();
@@ -192,14 +194,14 @@ class Legesystem{
 			System.out.format("+--------------+------+----------------------+--------+------------+----------+%n");
 		}
 		System.out.println("\n__Leger__\n");
-		String tabellLege = "| %-30s | %-10s |%n";
+		String tabellLege = "| %-10s | %-30s |%n";
 
-		System.out.format("+--------------------------------+------------+%n");
-		System.out.format("| Navn                           | Type       |%n");
-		System.out.format("+--------------------------------+------------+%n");
+		System.out.format("+------------+--------------------------------+%n");
+		System.out.format("| Type       | Navn                           |%n");
+		System.out.format("+------------+--------------------------------+%n");
 		for(Lege lege : leger){
-			System.out.format(tabellLege, lege.hentNavn(), lege.hentType().toLowerCase());
-			System.out.format("+--------------------------------+------------+%n");
+			System.out.format(tabellLege, lege.hentType().toLowerCase(), lege.hentNavn());
+			System.out.format("+------------+--------------------------------+%n");
 		}
 		System.out.println("\n__Resepter__\n");
 		String tabellResept = "| %-4d | %-20s | %-6d | %-5s | %-5s |%n";
@@ -235,7 +237,7 @@ class Legesystem{
 		}
 	}
 	//E4
-	public static void leggTilISystem(Scanner sc) throws UlovligUtskrift{ //legge til nye elementer i Legesystemet
+	public static void leggTilISystem(Scanner sc) throws UlovligUtskrift { //legge til nye elementer i Legesystemet
 		String valg = "";
 		String elementer = "\n__Elementer__"
 		+"\nHvilket element onsker du aa legge til?"
@@ -263,24 +265,31 @@ class Legesystem{
 				leggTilResept(sc);
 			}
 			else{
-				System.out.println("\nUgyldig input!");
+				System.out.println("\nSkriv inn et av tallene2!");
 			}
 		}
 		System.out.println("\n__Tilbake til Hovedmeny__");
 	}
 	public static void leggTilPasient(Scanner sc){
+		String input;
 		String navn;
 		String fnr;
 		Pasient nyPasient;
 		System.out.println("__Legg til pasient__");
 
 		System.out.println("Navn: ");
-        navn = sc.nextLine();
-        System.out.println("Fodselsnummer: ");
-        fnr = sc.nextLine();
-        nyPasient = new Pasient(navn, fnr);
-        pasienter.leggTil(nyPasient);
-		System.out.println(nyPasient.hentNavn() +" er lagt til i systemet!");
+        input = sc.nextLine();
+		if(input != "" && input.charAt(0) != ' ' ){
+			navn = input;
+			System.out.println("Fodselsnummer: ");
+        	input = sc.nextLine();
+			if(input != "" && input.charAt(0) != ' '){
+				fnr = input;
+				nyPasient = new Pasient(navn, fnr);
+				pasienter.leggTil(nyPasient);
+				System.out.println(nyPasient.hentNavn() +" er lagt til i systemet!");
+			}
+		}
 		System.out.println("\n__Tilbake__");
 	}
     public static void leggTilLegemiddel(Scanner sc){
@@ -313,8 +322,10 @@ class Legesystem{
 				virkestoff = 0;
 				try {
 					virkestoff = sc.nextDouble();
-				} catch (NumberFormatException e) {
-					System.out.println("Ikke et tall!");
+					// Hvis formatet paa Stringen eller inputen konverteres feil
+					// catcher flere exceptions med |
+				} catch (NumberFormatException | InputMismatchException e) {
+					System.out.println("Ikke et gyldig tall!");
 				}
 				System.out.println("Styrke: ");
 				styrke = sc.nextInt();
@@ -329,7 +340,12 @@ class Legesystem{
 				System.out.println("Pris");
 				pris = ((int) Math.round(sc.nextDouble()));
 				System.out.println("Virkestoff: ");
-				virkestoff = sc.nextDouble();
+				virkestoff = 0;
+				try {
+					virkestoff = sc.nextDouble();
+				} catch (NumberFormatException | InputMismatchException e) {
+					System.out.println("Ikke et gyldig tall!");
+				}
 				System.out.println("Styrke: ");
 				styrke = sc.nextInt();
 
@@ -343,7 +359,13 @@ class Legesystem{
 				System.out.println("Pris");
 				pris = ((int) Math.round(sc.nextDouble()));
 				System.out.println("Virkestoff: ");
-				virkestoff = sc.nextDouble();
+				virkestoff = 0;
+				try {
+					virkestoff = sc.nextDouble();
+				} catch (NumberFormatException | InputMismatchException e) {
+					System.out.println("Ikke et gyldig tall!");
+				}
+
 				Vanlig nyVanlig = new Vanlig(navn, pris, virkestoff);
 				legemidler.leggTil(nyVanlig);
 				return;
@@ -459,7 +481,7 @@ class Legesystem{
 		valg = sc.nextLine();
 		while (!(valg.equals("1") || valg.equals("2") || valg.equals("3") || valg.equals("4"))){
 			if(legemiddelet.hentType().equals("Narkotisk")){
-				System.out.println("Du har valgt narkotisk, så velg blå resept:");
+				System.out.println("Du har valgt narkotisk, saa velg blaa resept:");
 			}
 			else{
 				System.out.println("Velg en resept:");
@@ -498,12 +520,19 @@ class Legesystem{
 		System.out.println("__Bruk en resept__");
 		for(Pasient pasient : pasienter){
 			listePasienter = listePasienter + "\n" + pasient.hentID() + ": " 
-			+ pasient.hentNavn() + " (fnr " + pasient.hentFodselsnummer() + ")";
+			+ pasient.hentNavn() + " (fnr: " + pasient.hentFodselsnummer() + ")";
 		}
 		System.out.println(listePasienter);
 		while(pasientId < 1 || pasientId > pasienter.stoerrelse()){
-			System.out.println("velg en av pasientene: ");
-			pasientId = sc.nextInt();
+			try {
+				System.out.println("Velg en av pasientene: ");
+				pasientId = sc.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("\nAksepterer ikke bokstaver!");
+				// Tommer scanner for feil input
+				sc.next();
+				continue;
+			}
 		}
 
 		Pasient pasienten = pasienter.hent(pasientId - 1);
@@ -513,7 +542,7 @@ class Legesystem{
 			return;
 		}
 
-		System.out.println("\nValgt pasient: " + pasienten.hentNavn() + " (fnr " 
+		System.out.println("\nValgt pasient: " + pasienten.hentNavn() + " (fnr: " 
 		+ pasienten.hentFodselsnummer() + ")");
 		for(int i = 0; i < pasienten.hentResepter().stoerrelse(); i++){
 			resepten = pasienten.hentResepter().hent(i);
@@ -620,7 +649,7 @@ class Legesystem{
 		try {
 			f = new PrintWriter(filnavn);
 		} catch (Exception e) {
-			System.out.println("Noe gikk galt!");
+			System.out.println("Kunne ikke skrive " + filnavn);
 			// exit(1) indikerer en gal avslutning
 			System.exit(1);
 		}
@@ -649,6 +678,7 @@ class Legesystem{
 			}
 			f.println(sTom);
 		}
+		System.out.println("\nSkrevet til " + filnavn);
 
 		f.println("# Leger (navn,kontrollid / 0 hvis vanlig lege)");
 		for (Lege lege : leger) {
@@ -685,11 +715,10 @@ class Legesystem{
 		f.close();
 	}
 
-    public static void main(String[] args) throws NumberFormatException, UlovligUtskrift {
+    public static void main(String[] args) throws UlovligUtskrift {
 
-        lesFraFil("test.txt");
+        lesFraFil("LegeData.txt");
         // lesFraFil("nyStorFil.txt");
-
         meny();
 	}
 }
